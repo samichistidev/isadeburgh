@@ -1,3 +1,13 @@
+html,
+body,
+*,
+*::before,
+*::after {
+  cursor: url("./images/custom_cursor_32px.svg"), auto !important;
+  scrollbar-width: none;
+  user-select: none;
+}
+
 @font-face {
   font-family: PPNeueMontrealBold;
   src: url(./fonts/PP\ Neue\ Montreal/NeueMontreal-Bold.otf);
@@ -34,10 +44,12 @@ body {
 
 body::-webkit-scrollbar {
   display: none;
+  width: 0;
 }
 
 html,
 body {
+  overscroll-behavior: none;
   overflow-x: hidden;
 }
 
@@ -91,6 +103,32 @@ span.icon-font {
   max-height: 188px;
 }
 
+.navigation .menu {
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  display: none;
+}
+
+.navigation .menu.active {
+  display: flex;
+}
+
+.navigation .menu li {
+  color: #000;
+  text-align: right;
+  font-family: FoundersGroteskCondensedMedium;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 80%;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+}
+
 .navigation .logo {
   max-width: 1034px;
   width: 100%;
@@ -112,11 +150,6 @@ span.icon-font {
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
-}
-
-.navigation .actions .menu svg {
-  cursor: pointer;
 }
 
 .navigation .actions .action-button .of-h {
@@ -132,6 +165,10 @@ span.icon-font {
 .navigation .actions .action-button:hover .of-h span {
   transform: translateX(200%);
   transition: 0.6s;
+}
+
+.menu-wrapper.menu-wrapper {
+  position: relative;
 }
 
 .hero {
@@ -165,11 +202,6 @@ span.icon-font {
   left: -30px;
   width: 71px;
   height: 84px;
-  cursor: pointer;
-}
-
-.hero .right-content .icon-font {
-  cursor: pointer;
 }
 
 .hero .p {
@@ -187,7 +219,6 @@ span.icon-font {
   text-transform: capitalize;
   flex-shrink: 0;
   position: relative;
-  cursor: pointer;
 }
 
 .hero .right-content img {
@@ -234,19 +265,12 @@ span.icon-font {
   text-transform: uppercase;
 }
 
-.carousel-wrapper .text-carousel.right {
-  animation: scroll-right 30s linear infinite;
-}
-
-.carousel-wrapper .text-carousel.left {
-  animation: scroll-left 30s linear infinite;
-}
-
 section.work {
   padding-top: 187px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 }
 
 section.work h2 {
@@ -260,6 +284,43 @@ section.work h2 {
   text-transform: uppercase;
   margin-bottom: 32px;
   max-height: 81px;
+  position: relative;
+  max-width: fit-content;
+}
+
+section.work h2 p {
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  right: -202px;
+  bottom: 36px;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 50%;
+  width: fit-content;
+  max-height: 40px;
+  border: 2px solid black;
+  max-width: 199px;
+  transform: rotate(-30deg);
+}
+
+section.work h2 p span:nth-child(1) {
+  color: #000;
+  font-family: FoundersGroteskMedium;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.32px;
+  text-transform: uppercase;
+  height: 16px;
+}
+
+section.work h2 p span.icon-font {
+  line-height: 90%;
+  height: 16px;
 }
 
 section.work .left {
@@ -289,7 +350,7 @@ section.work .work-left-content p {
 }
 
 section.work .end-content {
-  margin-bottom: 200px;
+  margin-bottom: 251px;
 }
 
 section.work .left .project-heading {
@@ -303,6 +364,7 @@ section.work .left .project-heading {
   line-height: 100%;
   letter-spacing: -1.92px;
   text-transform: capitalize;
+  margin-top: 235px;
 }
 
 section.work .left .project-text {
@@ -317,7 +379,7 @@ section.work .left .project-text {
   max-width: 460px;
   margin-top: 32px;
   margin-left: 156px;
-  margin-bottom: 303px;
+  margin-bottom: 618px;
 }
 
 section.work .work-headline {
@@ -335,9 +397,9 @@ section.work .work-headline {
 section.work .right {
   width: 100%;
   position: relative;
-  max-width: 922px;
-  height: 930px;
-  margin-right: clamp(20px, 20vw, 188px);
+  max-width: 936px;
+  height: 896.237px;
+  margin-top: 280px;
 }
 
 section.work .right img {
@@ -347,32 +409,180 @@ section.work .right img {
 }
 
 section.work .right .banner {
-  top: 225px;
-  left: -90px;
+  width: 381px;
+  height: 535px;
+  aspect-ratio: 381/535;
+  top: 31px;
+  left: 0px;
   z-index: 1;
 }
 
 section.work .right .cartoon-box {
-  top: 560px;
-  left: 18px;
+  top: unset;
+  left: 0;
+  bottom: 77px;
   z-index: 1;
 }
 
 section.work .right .cartoonish-sea-picture {
-  left: 429px;
+  width: 355px;
+  height: 448px;
+  aspect-ratio: 355/448;
+  left: unset;
+  right: 0;
   top: 0;
   z-index: 0;
 }
 
-section.work .right .magic-mind-bottle {
-  left: 193px;
-  top: 288px;
+section.work .right .magic-mind-bottle-picture {
+  width: 460px;
+  height: 524px;
+  aspect-ratio: 460/524;
+  left: 238px;
+  top: 160px;
   z-index: 0;
 }
 
-section.work .right .house-photo {
-  left: 465px;
-  top: 554px;
+section.work .right .multiple-bottle {
+  width: 390px;
+  height: 422px;
+  aspect-ratio: 390/422;
+  left: unset;
+  top: unset;
+  bottom: 0;
+  right: 0;
+}
+
+section.work .products {
+  position: absolute;
+  width: 1375px;
+  height: 1767px;
+  bottom: 16px;
+  right: 16px;
+}
+
+section.work .products .displayed-product {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+section.work .products .next-product {
+  position: absolute;
+  bottom: 125px;
+  right: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 331.21px;
+  width: 100%;
+}
+
+section.work .products .next-product h2 {
+  color: #000;
+  font-family: FoundersGroteskCondensedMedium;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 80%; /* 51.2px */
+  letter-spacing: -2.56px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  margin-bottom: 0;
+}
+
+section.work .products .after-next-product {
+  position: absolute;
+  bottom: 0;
+  right: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 141px;
+  width: 100%;
+}
+
+section.work .products .next-product p {
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  left: 0;
+  bottom: 64px;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 50%;
+  width: fit-content;
+  max-height: 40px;
+  border: 2px solid black;
+  max-width: 199px;
+  transform: rotate(15deg);
+}
+
+section.work .products .next-product p span:nth-child(1) {
+  color: #000;
+  font-family: FoundersGroteskMedium;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.32px;
+  text-transform: uppercase;
+  height: 16px;
+}
+
+section.work .products .next-product p span.icon-font {
+  line-height: 90%;
+  height: 16px;
+}
+
+section.work .products .next-product img {
+  filter: blur(12px);
+}
+
+section.work .products .after-next-product img {
+  filter: blur(12px);
+}
+
+section.work .products .after-next-product h2 {
+  font-family: FoundersGroteskCondensedMedium;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 80%;
+  letter-spacing: -1.28px;
+  position: absolute;
+  bottom: 48px;
+  margin-bottom: 0;
+  left: 0;
+  text-transform: uppercase;
+}
+
+section.about .row:has(.about-images) .work-text-1 {
+  position: absolute;
+  top: 229px;
+  left: 537px;
+}
+
+section.about .row:has(.about-images) .work-text-2 {
+  position: absolute;
+  top: 845px;
+  left: 745px;
+}
+
+section.about .row:has(.about-images) .work-text-3 {
+  position: absolute;
+  top: 600px;
+  left: 1240px;
+}
+
+section.about .row:has(.about-images) .work-text-4 {
+  position: absolute;
+  top: 870px;
+  left: 1700px;
 }
 
 section.about .photos {
@@ -525,24 +735,6 @@ section.about .row .about-images img:nth-child(10) {
   z-index: 0;
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes scroll-right {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
 .of-h {
   overflow: hidden;
 }
@@ -631,6 +823,11 @@ section.about .row .about-images img:nth-child(10) {
 }
 
 .footer .contact-information h2 {
+  max-width: fit-content;
+  position: relative;
+}
+
+.footer .contact-information h2 span {
   color: #000;
   font-family: EditorialnewUltraLight;
   font-size: 64px;
@@ -638,15 +835,34 @@ section.about .row .about-images img:nth-child(10) {
   font-weight: 300;
   line-height: 100%; /* 64px */
   letter-spacing: -1.92px;
-  max-width: fit-content;
-  position: relative;
 }
 
 .footer .contact-information h2 > img {
   position: absolute;
   top: -55px;
   right: -78px;
-  cursor: pointer;
+}
+
+.footer .contact-information h2 img:hover {
+  animation: jump 1.5s ease-in-out;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .footer .contact-information .social-ctas {
@@ -689,6 +905,33 @@ section.about .row .about-images img:nth-child(10) {
   line-height: 84%; /* 32px */
   letter-spacing: -0.64px;
   text-transform: uppercase;
+}
+
+#popup {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  font-family: EditorialNewUltraLight;
+  border-radius: 5px;
+  padding: 8px 12px;
+  position: fixed;
+  bottom: 0;
+  left: 16px;
+  font-size: 24px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s, bottom 0.3s;
+}
+
+#popup.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 16px;
+}
+
+.right.mobile {
+  display: none;
 }
 
 @keyframes slideLeft {
@@ -772,11 +1015,9 @@ section.about .row .about-images img:nth-child(10) {
     display: flex;
     align-items: center;
     gap: 0.417vw;
-    cursor: pointer;
   }
 
   .navigation .actions .menu svg {
-    cursor: pointer;
   }
 
   .navigation .actions .action-button .of-h {
@@ -834,7 +1075,6 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: capitalize;
     flex-shrink: 0;
     position: relative;
-    cursor: pointer;
   }
 
   .hero .right-content img {
@@ -1168,7 +1408,60 @@ section.about .row .about-images img:nth-child(10) {
     left: -1.56vw;
     width: 3.7vw;
     height: 4.38vw;
-    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  section.work .right {
+    margin-right: 16px;
+    width: 488px;
+    height: 467px;
+  }
+
+  section.work .right .banner {
+    top: 16px;
+    left: 0;
+    z-index: 1;
+    width: 198.641px;
+    height: 278.931px;
+    aspect-ratio: 198.64/278.93;
+  }
+
+  section.work .right .cartoon-box {
+    width: 180.555px;
+    height: 220.778px;
+    aspect-ratio: 180/220;
+    z-index: 1;
+    top: 208px;
+    left: 0;
+  }
+
+  section.work .right .cartoonish-sea-picture {
+    right: 0;
+    top: 0;
+    bottom: unset;
+    left: unset;
+    width: 180.555px;
+    height: 230.419px;
+    z-index: 0;
+  }
+
+  section.work .right .magic-mind-bottle-picture {
+    width: 239.829px;
+    height: 273.196px;
+    left: 124px;
+    top: 83px;
+    z-index: 0;
+  }
+
+  section.work .right .multiple-bottle {
+    width: 200px;
+    height: 217px;
+    aspect-ratio: 200/217;
+    bottom: 0;
+    right: 0;
+    left: unset;
+    top: unset;
   }
 }
 
@@ -1327,39 +1620,38 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: uppercase;
   }
 
-  section.work .right {
-    margin-right: 16px;
+  section.work .left .project-heading {
+    color: #000;
+    font-family: EditorialNewUltraLight;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%; /* 56px */
+    letter-spacing: -1.68px;
+    text-transform: capitalize;
   }
 
-  section.work .right .banner {
-    top: 114px;
-    left: -40;
-    z-index: 1;
-    width: 213.696px;
-    height: 267.12px;
+  section.work .work-headline {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 160px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 128px */
+    letter-spacing: -6.4px;
+    text-transform: uppercase;
   }
 
-  section.work .right .cartoon-box {
-    top: 560px;
-    left: 18px;
-    z-index: 1;
-  }
-
-  section.work .right .cartoonish-sea-picture {
-    left: 429px;
-    top: 0;
-    z-index: 0;
-  }
-
-  section.work .right .magic-mind-bottle {
-    left: 193px;
-    top: 288px;
-    z-index: 0;
-  }
-
-  section.work .right .house-photo {
-    left: 465px;
-    top: 554px;
+  section.work .left .project-text {
+    color: #000;
+    max-width: 320px;
+    font-family: EditorialNewUltraLight;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%; /* 24px */
+    letter-spacing: -0.48px;
+    margin-bottom: 255px;
   }
 
   section.about .photos .photo.odd svg,
@@ -1408,6 +1700,57 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: uppercase;
   }
 
+  section.work .products {
+    bottom: 16px;
+    right: 16px;
+    width: 808px;
+    height: 1063px;
+  }
+
+  section.work .products .displayed-product {
+    overflow: hidden;
+    max-width: 217px;
+  }
+
+  section.work .products .displayed-product img {
+    width: 140px;
+    object-fit: cover;
+    height: 243px;
+  }
+
+  section.work .products .after-next-product {
+    width: 100%;
+    max-width: 95px;
+    object-fit: cover;
+    right: 60px;
+  }
+
+  section.work .products .after-next-product h2 {
+    font-size: 24px;
+  }
+
+  section.work .products .after-next-product img {
+    width: 100%;
+  }
+
+  section.work .products .next-product {
+    max-width: 167.35px;
+    bottom: 108px;
+    right: 302px;
+  }
+
+  section.work .products .next-product h2 {
+    font-size: 32px;
+  }
+
+  section.work .products .next-product img {
+    width: 100%;
+  }
+
+  section.work .work-headline {
+    height: 100px;
+  }
+
   .footer {
     padding-top: 416px;
   }
@@ -1440,7 +1783,6 @@ section.about .row .about-images img:nth-child(10) {
     position: absolute;
     top: -55px;
     right: -78px;
-    cursor: pointer;
   }
 
   .footer .contact-information .social-ctas {
@@ -1492,6 +1834,28 @@ section.about .row .about-images img:nth-child(10) {
   .footer .footer-content img {
     width: 40px;
     height: 40px;
+  }
+
+  section.about .row:has(.about-images) .work-text-1 {
+    position: absolute;
+    top: 137px;
+    left: 441px;
+  }
+
+  section.about .row:has(.about-images) .work-text-2 {
+    position: absolute;
+    top: 621px;
+    left: 583px;
+  }
+
+  section.about .row:has(.about-images) .work-text-3 {
+    position: absolute;
+    top: 420px;
+    left: 950px;
+  }
+
+  section.about .row:has(.about-images) .work-text-4 {
+    display: none;
   }
 }
 
@@ -1583,6 +1947,10 @@ section.about .row .about-images img:nth-child(10) {
     max-height: 30px;
   }
 
+  .navigation .menu li {
+    font-size: 32px !important;
+  }
+
   .hero .right .of-h {
     display: none;
   }
@@ -1660,12 +2028,81 @@ section.about .row .about-images img:nth-child(10) {
     margin-bottom: 16px;
   }
 
+  section.work {
+    display: flex;
+    flex-direction: column;
+  }
+
   section.work .left {
     width: 100%;
   }
 
   section.work .right {
     display: none;
+  }
+
+  section.work .left .mobile-product-image {
+    margin: 0;
+    width: 100%;
+  }
+
+  section.work .right.mobile {
+    display: block;
+    margin-bottom: 120px;
+  }
+
+  section.work .right {
+    margin-right: 0;
+    max-width: 100%;
+    height: 360px;
+  }
+
+  section.work .right .banner {
+    top: 12px;
+    left: 0;
+    z-index: 1;
+    width: 153.458px;
+    height: 215.485px;
+    aspect-ratio: 153.46/215.49;
+  }
+
+  section.work .right .cartoon-box {
+    width: 138.722px;
+    height: 168.61px;
+    aspect-ratio: 138/168;
+    z-index: 1;
+    top: unset;
+    bottom: 32px;
+    left: 0;
+  }
+
+  section.work .right .cartoonish-sea-picture {
+    right: 0;
+    top: 0;
+    bottom: unset;
+    left: unset;
+    width: 140.722px;
+    height: 176.694px;
+    aspect-ratio: 140/176;
+    z-index: 0;
+  }
+
+  section.work .right .magic-mind-bottle-picture {
+    width: 185.277px;
+    height: 211.055px;
+    left: 95px;
+    top: 64px;
+    z-index: 0;
+  }
+
+  section.work .right .multiple-bottle {
+    width: 155.638px;
+    height: 166.972px;
+    aspect-ratio: 155/166;
+    bottom: 0;
+    right: 0;
+    left: unset;
+    top: unset;
   }
 
   section.work .left .work-left-content {
@@ -1685,7 +2122,6 @@ section.about .row .about-images img:nth-child(10) {
     line-height: 100%; /* 32px */
     letter-spacing: -0.96px;
     text-transform: capitalize;
-    margin-top: 32px;
   }
 
   section.work .left .project-text {
@@ -1699,7 +2135,7 @@ section.about .row .about-images img:nth-child(10) {
     margin-top: 16px;
     margin-left: auto;
     max-width: 280px;
-    margin-bottom: 706px;
+    margin-bottom: 120px;
   }
 
   section.work .work-headline {
@@ -1711,6 +2147,47 @@ section.about .row .about-images img:nth-child(10) {
     letter-spacing: -4.8px;
     max-height: 76px;
     text-transform: uppercase;
+  }
+
+  section.work h2 {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  section.work h2 p {
+    display: flex;
+    gap: 16px;
+    position: absolute;
+    right: unset;
+    right: 0;
+    bottom: 64px;
+    align-items: center;
+    white-space: nowrap;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 50%;
+    width: fit-content;
+    max-height: 40px;
+    border: 2px solid black;
+    max-width: 199px;
+    transform: rotate(15deg);
+  }
+
+  section.work h2 p span:nth-child(1) {
+    color: #000;
+    font-family: FoundersGroteskMedium;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.32px;
+    text-transform: uppercase;
+    height: 16px;
+  }
+
+  section.work h2 p span.icon-font {
+    line-height: 90%;
+    height: 16px;
   }
 
   section.about .row:has(.about-images) {
@@ -1802,6 +2279,29 @@ section.about .row .about-images img:nth-child(10) {
     width: calc(50% - 4px);
     max-width: calc(50% - 4px);
     min-width: calc(50% - 4px);
+  }
+
+  section.about .row:has(.about-images) .work-text-1 {
+    position: absolute;
+    max-width: 117px;
+    rotate: 20deg;
+    top: 99px;
+    left: 276px;
+  }
+
+  section.about .row:has(.about-images) .work-text-2 {
+    position: absolute;
+    max-width: 80px;
+    rotate: -20deg;
+    top: 372px;
+    left: 350px;
+  }
+
+  section.about .row:has(.about-images) .work-text-3 {
+    position: absolute;
+    top: 255px;
+    left: 570px;
+    max-width: 81px;
   }
 
   section.about .photos .photo.odd svg,

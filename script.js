@@ -152,6 +152,43 @@ gsap.from(".button.of-h span", {
   ease: "power4.out",
 });
 
+//
+
+(() => {
+  const rows = document.querySelectorAll(".text-carousel");
+
+  rows.forEach((row) => {
+    const isLeft = row.classList.contains("left");
+
+    if (isLeft) {
+      gsap.to(row, {
+        x: "-100%",
+        duration: 30,
+        ease: "linear",
+        repeat: -1,
+      });
+    } else {
+      gsap.fromTo(
+        row,
+        {
+          x: "-100%",
+          duration: 30,
+          ease: "linear",
+          repeat: -1,
+        },
+        {
+          x: "0%",
+          duration: 30,
+          ease: "linear",
+          repeat: -1,
+        }
+      );
+    }
+  });
+})();
+
+//
+
 (function addHeroScrollHandlers() {
   function scrollToWork() {
     const workEl = document.querySelector(".work");
@@ -190,35 +227,6 @@ gsap.from(".button.of-h span", {
     attachListeners();
   }
 })();
-
-const leftCarousels = document.querySelectorAll(".text-carousel.left");
-const rightCarousels = document.querySelectorAll(".text-carousel.right");
-
-window.addEventListener("wheel", (e) => {
-  if (e.deltaY > 0) {
-    leftCarousels.forEach((carousel) => {
-      gsap.to(carousel, {
-        animation: "scroll-right 30s linear infinite",
-      });
-    });
-    rightCarousels.forEach((carousel) => {
-      gsap.to(carousel, {
-        animation: "scroll-left 30s linear infinite",
-      });
-    });
-  } else {
-    leftCarousels.forEach((carousel) => {
-      gsap.to(carousel, {
-        animation: "scroll-left 30s linear infinite",
-      });
-    });
-    rightCarousels.forEach((carousel) => {
-      gsap.to(carousel, {
-        animation: "scroll-right 30s linear infinite",
-      });
-    });
-  }
-});
 
 const oddBoxes = document.querySelectorAll(
   "section.about .photos .photo.odd img"
@@ -269,5 +277,188 @@ evenBoxes.forEach((box) => {
       duration: 0.5,
       ease: "power2.out",
     });
+  });
+});
+
+//
+
+let aboutImage1 = document.querySelector(".abt-img-1");
+let aboutImage2 = document.querySelector(".abt-img-2");
+let aboutImage3 = document.querySelector(".abt-img-3");
+let aboutImage5 = document.querySelector(".abt-img-5");
+let aboutImage6 = document.querySelector(".abt-img-6");
+let aboutImage7 = document.querySelector(".abt-img-7");
+let aboutImage8 = document.querySelector(".abt-img-8");
+let aboutImage10 = document.querySelector(".abt-img-10");
+
+const isClicked = {};
+
+// Images with their click transforms and original zIndex
+const images = [
+  { el: aboutImage1, clickTransform: "-50px, -50px", normalZ: 0 },
+  { el: aboutImage2, clickTransform: "-50px, -50px", normalZ: 1 },
+  { el: aboutImage3, clickTransform: "-50px, -50px", normalZ: 2 },
+  { el: aboutImage5, clickTransform: "95px, -140px", normalZ: 2 },
+  { el: aboutImage7, clickTransform: "80px, -120px", normalZ: 1 },
+  { el: aboutImage8, clickTransform: "90px, -220px", normalZ: 1 },
+  { el: aboutImage10, clickTransform: "70px, 70px", normalZ: 0 },
+];
+
+// Function to animate an image
+function animateImage(el, x, y, zIndex) {
+  gsap.to(el, {
+    duration: 0.1,
+    transform: `translateX(${x}) translateY(${y})`,
+    ease: "power4.out",
+  });
+  gsap.to(el, {
+    delay: 0.1,
+    duration: 0.1,
+    zIndex: zIndex,
+    ease: "power4.out",
+  });
+  gsap.to(el, {
+    delay: 0.2,
+    duration: 0.1,
+    transform: "translateX(0) translateY(0)",
+    ease: "power4.out",
+  });
+}
+
+// Apply click + mouseleave to all images
+images.forEach((img) => {
+  const [x, y] = img.clickTransform.split(",");
+  const el = img.el;
+  isClicked[el.id] = false;
+
+  // Click animation
+  el.addEventListener("click", () => {
+    // Move the image first
+    gsap.to(el, {
+      duration: 0.1,
+      transform: `translateX(${x}) translateY(${y})`,
+      ease: "power4.out",
+    });
+    gsap.to(el, {
+      delay: 0.1,
+      duration: 0.1,
+      zIndex: 5,
+      ease: "power4.out",
+    });
+    gsap.to(el, {
+      delay: 0.2,
+      duration: 0.1,
+      transform: "translateX(0) translateY(0)",
+      ease: "power4.out",
+      onComplete: () => {
+        isClicked[el.id] = true; // set clicked after animation
+      },
+    });
+  });
+
+  // Mouseleave animation
+  el.addEventListener("mouseleave", () => {
+    if (isClicked[el.id]) {
+      gsap.to(el, {
+        duration: 0.1,
+        transform: `translateX(${x}) translateY(${y})`,
+        ease: "power4.out",
+      });
+      gsap.to(el, {
+        delay: 0.1,
+        duration: 0.1,
+        zIndex: img.normalZ, // reset to your specific zIndex
+      });
+      gsap.to(el, {
+        delay: 0.2,
+        duration: 0.1,
+        transform: "translateX(0) translateY(0)",
+        ease: "power4.out",
+        onComplete: () => {
+          isClicked[el.id] = false; // reset clicked state
+        },
+      });
+    }
+  });
+});
+
+let menuLinks = document.querySelectorAll(".menu li");
+
+menuLinks.forEach((link) => {
+  link.addEventListener("mouseenter", () => {
+    gsap.to(link, {
+      fontSize: 64,
+      duration: 0.4,
+      ease: "power4.out",
+    });
+  });
+  link.addEventListener("mouseleave", () => {
+    gsap.to(link, {
+      fontSize: 24,
+      duration: 0.4,
+      ease: "power4.out",
+    });
+  });
+});
+
+let menuBtn = document.querySelector(".menu-btn");
+let menu = document.querySelector(".menu");
+
+menuBtn.addEventListener("click", () => {
+  if (menu.classList.contains("active")) {
+    menu.classList.remove("active");
+    menuBtn.innerHTML = `<rect width="16" height="2" fill="black" />
+              <rect y="10" width="16" height="2" fill="black" />`;
+  } else {
+    menu.classList.add("active");
+    menuBtn.innerHTML = `
+      <rect width="15.0807" height="1.88508" transform="matrix(0.707272 0.706941 -0.707272 0.706941 1.33301 0)" fill="black"/>
+  <rect width="15.0807" height="1.88508" transform="matrix(0.707272 -0.706941 0.707272 0.706941 0 10.668)" fill="black"/>
+    `;
+  }
+});
+
+// document.addEventListener("contextmenu", function (e) {
+//   e.preventDefault();
+// });
+
+let scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Smooth scrolling
+  });
+});
+
+const copyBtn = document.getElementById("copyBtn");
+const textToCopy = document.getElementById("textToCopy").innerText;
+const popup = document.getElementById("popup");
+
+copyBtn.addEventListener("click", () => {
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      popup.classList.add("show");
+
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 1500);
+    })
+    .catch((err) => {
+      console.error("Failed to copy text: ", err);
+    });
+});
+
+const menuItems = document.querySelectorAll(".menu li");
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const targetId = item.getAttribute("data-target");
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
   });
 });

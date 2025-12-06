@@ -7,7 +7,7 @@
     <title>Isa De Burgh</title>
   </head>
   <body>
-    <section class="start">
+    <section class="start" id="home">
       <div class="navigation">
         <div class="of-h">
           <svg
@@ -65,17 +65,24 @@
               <span class="icon-font">→ →</span>
             </div>
           </div>
-          <div class="action-button menu">
+          <div class="action-button menu-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="12"
               viewBox="0 0 16 12"
               fill="none"
+              class="menu-btn"
             >
               <rect width="16" height="2" fill="black" />
               <rect y="10" width="16" height="2" fill="black" />
             </svg>
+            <ul class="menu">
+              <li data-target="home">HOME</li>
+              <li data-target="about">ABOUT</li>
+              <li data-target="work">WORK</li>
+              <li data-target="contact">CONTACT</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -246,9 +253,15 @@
         </div>
       </div>
     </section>
-    <section class="work">
+    <section class="work" id="work">
       <div class="left">
-        <h2>MAGIC MIND</h2>
+        <h2>
+          MAGIC MIND
+          <p>
+            <span>PREVIOUS PROJECT</span>
+            <span class="icon-font">→</span>
+          </p>
+        </h2>
         <div class="work-left-content year">
           <p>YEAR</p>
           <p>2020-present</p>
@@ -268,11 +281,6 @@
             digital communication strategy (email+ social)
           </p>
         </div>
-        <img
-          src="./images/magic_mind_bottle.png"
-          class="mobile-product-image"
-          alt=""
-        />
         <p class="project-heading">Project</p>
         <p class="project-text">
           Magic Mind approached me ahead of their 2020 launch to help bring
@@ -285,25 +293,69 @@
           has been rooted in elevating Magic Mind’s mission through consistent,
           cohesive, and emotionally resonant creative.
         </p>
+        <div class="right mobile">
+          <img src="./images/banner.svg" alt="1" class="banner" />
+          <img src="./images/cartoon_box.svg" alt="2" class="cartoon-box" />
+          <img
+            src="./images/cartoonish_sea_picture.svg"
+            alt="3"
+            class="cartoonish-sea-picture"
+          />
+          <img
+            src="./images/multiple_bottle.svg"
+            alt="4"
+            class="multiple-bottle"
+          />
+          <img
+            src="./images/magic_mind_bottle_picture.svg"
+            alt="5"
+            class="magic-mind-bottle-picture"
+          />
+        </div>
         <h1 class="work-headline">WORK</h1>
       </div>
       <div class="right">
-        <img src="./images/banner.png" alt="1" class="banner" />
-        <img src="./images/cartoon_box.png" alt="2" class="cartoon-box" />
+        <img src="./images/banner.svg" alt="1" class="banner" />
+        <img src="./images/cartoon_box.svg" alt="2" class="cartoon-box" />
         <img
-          src="./images/cartoonish_sea_picture.png"
+          src="./images/cartoonish_sea_picture.svg"
           alt="3"
           class="cartoonish-sea-picture"
         />
-        <img src="./images/house_photo.png" alt="4" class="house-photo" />
         <img
-          src="./images/magic_mind_bottle_picture.png"
+          src="./images/multiple_bottle.svg"
+          alt="4"
+          class="multiple-bottle"
+        />
+        <img
+          src="./images/magic_mind_bottle_picture.svg"
           alt="5"
-          class="magic-mind-bottle"
+          class="magic-mind-bottle-picture"
         />
       </div>
+      <div class="products">
+        <div class="displayed-product">
+          <img src="./images/magic_mind_bottle.png" alt="magic_mind_bottle" />
+        </div>
+
+        <div class="next-product">
+          <img
+            src="./images/little_saints_bottle.png"
+            alt="little_saints_bottle"
+          />
+          <h2>LITTLESAINTS</h2>
+          <p>
+            <span>NEXT PROJECT</span>
+            <span class="icon-font">→</span>
+          </p>
+        </div>
+        <div class="after-next-product">
+          <img src="./images/sidedish.png" alt="sidedish" />
+          <h2>SIDEDISH</h2>
+        </div>
+      </div>
     </section>
-    <section class="about">
+    <section class="about" id="about">
       <div class="photos">
         <div class="photo odd">
           <svg
@@ -385,16 +437,76 @@
         </div>
         <div class="row">
           <div class="about-images">
-            <img src="./images/abt_img_1.png" alt="abt_img_1" />
-            <img src="./images/abt_img_2.png" alt="abt_img_2" />
-            <img src="./images/abt_img_3.png" alt="abt_img_3" />
-            <img src="./images/abt_img_4.png" alt="abt_img_4" />
-            <img src="./images/abt_img_5.png" alt="abt_img_5" />
-            <img src="./images/abt_img_6.png" alt="abt_img_6" />
-            <img src="./images/abt_img_7.png" alt="abt_img_7" />
-            <img src="./images/abt_img_8.png" alt="abt_img_8" />
-            <img src="./images/abt_img_9.png" alt="abt_img_9" />
-            <img src="./images/abt_img_10.png" alt="abt_img_10" />
+            <img
+              src="./images/abt_img_1.png"
+              alt="abt_img_1"
+              class="abt-img-1"
+            />
+            <img
+              src="./images/abt_img_2.png"
+              alt="abt_img_2"
+              class="abt-img-2"
+            />
+            <img
+              src="./images/abt_img_3.png"
+              alt="abt_img_3"
+              class="abt-img-3"
+            />
+            <img
+              src="./images/abt_img_4.png"
+              alt="abt_img_4"
+              class="abt-img-4"
+            />
+            <img
+              src="./images/abt_img_5.png"
+              alt="abt_img_5"
+              class="abt-img-5"
+            />
+            <img
+              src="./images/abt_img_6.png"
+              alt="abt_img_6"
+              class="abt-img-6"
+            />
+            <img
+              src="./images/abt_img_7.png"
+              alt="abt_img_7"
+              class="abt-img-7"
+            />
+            <img
+              src="./images/abt_img_8.png"
+              alt="abt_img_8"
+              class="abt-img-8"
+            />
+            <img
+              src="./images/abt_img_9.png"
+              alt="abt_img_9"
+              class="abt-img-9"
+            />
+            <img
+              src="./images/abt_img_10.png"
+              alt="abt_img_10"
+              class="abt-img-10"
+            />
+            <img
+              src="./images/work-text-1.svg"
+              alt="work"
+              class="work-text-1"
+            />
+            <img
+              src="./images/work-text-2.svg"
+              alt="work"
+              class="work-text-2"
+            />
+            <img
+              src="./images/work-text-3.svg"
+              alt="work"
+              class="work-text-3"
+            />
+            <img
+              src="./images/work-text-4.svg"
+              alt="work"
+              class="work-text-4"
+            />
           </div>
         </div>
         <div class="row">
@@ -543,12 +655,17 @@
         </div>
       </div>
     </section>
-    <section class="footer">
+    <section class="footer" id="contact">
+      <div id="popup">Copied!</div>
       <div class="contact-information">
         <h3>email</h3>
         <h2>
-          isadeburgh@gmail.com
-          <img src="./images/email_copy_btn.svg" alt="email_copy_btn" />
+          <span id="textToCopy">isadeburgh@gmail.com</span>
+          <img
+            src="./images/email_copy_btn.svg"
+            alt="email_copy_btn"
+            id="copyBtn"
+          />
         </h2>
 
         <div class="social-ctas">
@@ -565,7 +682,11 @@
 
       <div class="footer-content">
         <p>© 2025 copyright isa de burgh</p>
-        <img src="./images/scroll_to_top_icon.svg" alt="scroll_to_top_icon" />
+        <img
+          src="./images/scroll_to_top_icon.svg"
+          alt="scroll_to_top_icon"
+          class="scroll-to-top-btn"
+        />
       </div>
     </section>
     <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
