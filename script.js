@@ -90,8 +90,8 @@ function createLogoTween() {
     duration: 2,
     ease: "power4.out",
     scrollTrigger: {
-      trigger: ".work",
-      start: "top -50%",
+      trigger: ".about",
+      start: "top 100%",
       scrub: true,
     },
   });
@@ -295,90 +295,91 @@ const isClicked = {};
 
 // Images with their click transforms and original zIndex
 const images = [
-  { el: aboutImage1, clickTransform: "-50px, -50px", normalZ: 0 },
-  { el: aboutImage2, clickTransform: "-50px, -50px", normalZ: 1 },
-  { el: aboutImage3, clickTransform: "-50px, -50px", normalZ: 2 },
-  { el: aboutImage5, clickTransform: "95px, -140px", normalZ: 2 },
-  { el: aboutImage7, clickTransform: "80px, -120px", normalZ: 1 },
-  { el: aboutImage8, clickTransform: "90px, -220px", normalZ: 1 },
-  { el: aboutImage10, clickTransform: "70px, 70px", normalZ: 0 },
+  { el: aboutImage1, clickTransform: "-50px, -50px, 30deg", normalZ: 0 },
+  { el: aboutImage2, clickTransform: "-50px, -50px, -30deg", normalZ: 1 },
+  { el: aboutImage3, clickTransform: "-50px, -50px, -15deg", normalZ: 2 },
+  { el: aboutImage5, clickTransform: "95px, -140px, -30deg", normalZ: 2 },
+  { el: aboutImage7, clickTransform: "80px, -120px, -45deg", normalZ: 1 },
+  { el: aboutImage8, clickTransform: "90px, -220px, 0deg", normalZ: 0 },
+  { el: aboutImage10, clickTransform: "70px, 70px, 15deg", normalZ: 0 },
 ];
 
-// Function to animate an image
-function animateImage(el, x, y, zIndex) {
-  gsap.to(el, {
-    duration: 0.1,
-    transform: `translateX(${x}) translateY(${y})`,
-    ease: "power4.out",
-  });
-  gsap.to(el, {
-    delay: 0.1,
-    duration: 0.1,
-    zIndex: zIndex,
-    ease: "power4.out",
-  });
-  gsap.to(el, {
-    delay: 0.2,
-    duration: 0.1,
-    transform: "translateX(0) translateY(0)",
-    ease: "power4.out",
-  });
-}
-
 // Apply click + mouseleave to all images
+let activeCard = null;
+
 images.forEach((img) => {
-  const [x, y] = img.clickTransform.split(",");
+  const [x, y, deg] = img.clickTransform.split(",");
   const el = img.el;
   isClicked[el.id] = false;
 
-  // Click animation
   el.addEventListener("click", () => {
-    // Move the image first
-    gsap.to(el, {
-      duration: 0.1,
-      transform: `translateX(${x}) translateY(${y})`,
-      ease: "power4.out",
-    });
-    gsap.to(el, {
-      delay: 0.1,
-      duration: 0.1,
-      zIndex: 5,
-      ease: "power4.out",
-    });
-    gsap.to(el, {
-      delay: 0.2,
-      duration: 0.1,
-      transform: "translateX(0) translateY(0)",
-      ease: "power4.out",
-      onComplete: () => {
-        isClicked[el.id] = true; // set clicked after animation
-      },
-    });
-  });
-
-  // Mouseleave animation
-  el.addEventListener("mouseleave", () => {
-    if (isClicked[el.id]) {
+    // CASE 1: Clicked the same active card → reset it
+    if (activeCard === el) {
       gsap.to(el, {
         duration: 0.1,
-        transform: `translateX(${x}) translateY(${y})`,
+        transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
         ease: "power4.out",
       });
       gsap.to(el, {
         delay: 0.1,
         duration: 0.1,
-        zIndex: img.normalZ, // reset to your specific zIndex
+        zIndex: img.normalZ,
       });
       gsap.to(el, {
         delay: 0.2,
         duration: 0.1,
-        transform: "translateX(0) translateY(0)",
+        transform: `translateX(0) translateY(0) rotate(${deg})`,
         ease: "power4.out",
         onComplete: () => {
-          isClicked[el.id] = false; // reset clicked state
+          activeCard = null;
         },
       });
+      return;
     }
+
+    // CASE 2: Clicking a NEW card while another is active
+    if (activeCard && activeCard !== el) {
+      // Reset previous active card FIRST
+      const prev = activeCard;
+      const prevData = images.find((i) => i.el === prev);
+      const [px, py, pdeg] = prevData.clickTransform.split(",");
+
+      gsap.to(prev, {
+        duration: 0.1,
+        transform: `translateX(${px}) translateY(${py}) rotate(${pdeg})`,
+      });
+      gsap.to(prev, {
+        delay: 0.1,
+        duration: 0.1,
+        zIndex: prevData.normalZ,
+      });
+      gsap.to(prev, {
+        delay: 0.2,
+        duration: 0.1,
+        transform: `translateX(0) translateY(0) rotate(${pdeg})`,
+      });
+    }
+
+    // After resetting old card → animate NEW card
+    setTimeout(() => {
+      gsap.to(el, {
+        duration: 0.1,
+        transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
+      });
+      gsap.to(el, {
+        delay: 0.1,
+        duration: 0.1,
+        zIndex: 5,
+      });
+      gsap.to(el, {
+        delay: 0.2,
+        duration: 0.1,
+        transform: `translateX(0) translateY(0) rotate(${deg})`,
+        onComplete: () => {
+          activeCard = el;
+        },
+      });
+    }, 300);
   });
 });
 
