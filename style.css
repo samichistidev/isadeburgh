@@ -9,7 +9,7 @@ body,
 }
 
 .mh-effect {
-  cursor: url("./images/custom_hover_cursor.png"), pointer !important;
+  cursor: url("./images/cursor.png"), pointer !important;
 }
 
 @font-face {
@@ -103,9 +103,10 @@ span.icon-font {
   left: 0;
   width: 100%;
   padding: 16px;
-  background-color: #fffefc;
   z-index: 99;
   max-height: 188px;
+  background: rgba(255, 254, 252, 0);
+  backdrop-filter: blur(10px);
 }
 
 .navigation .menu {
@@ -118,19 +119,52 @@ span.icon-font {
   display: none;
 }
 
-.navigation .menu-btn:hover {
-  animation: pop 0.2s linear;
+.navigation .menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  height: 12px;
+  width: 16px;
 }
 
-@keyframes pop {
+.navigation .menu-btn .line {
+  width: 16px;
+  height: 2px;
+  background-color: black;
+  transition: 0.2s ease-in-out;
+  position: absolute;
+}
+
+.navigation .menu-btn .line:nth-child(1) {
+  top: 0;
+}
+
+.navigation .menu-btn .line:nth-child(2) {
+  bottom: 0;
+}
+
+.navigation .menu-btn.active .line:nth-child(1) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.navigation .menu-btn.active .line:nth-child(2) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+/* .navigation .menu-btn:hover {
+  animation: rotateMenuBtn 5s linear infinite;
+} */
+
+@keyframes rotateMenuBtn {
   0% {
-    scale: 1;
-  }
-  50% {
-    scale: 1.1;
+    transform: rotate(0deg);
   }
   100% {
-    scale: 1;
+    transform: rotate(360deg);
   }
 }
 
@@ -160,6 +194,33 @@ span.icon-font {
   width: 100%;
   height: auto;
   cursor: pointer;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.navigation > .of-h .dot {
+  width: 16px;
+  height: 16px;
+  background-color: black;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(10px);
+}
+
+.navigation > .of-h .work-text {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+  filter: blur(10px);
+}
+
+.navigation > .of-h .about-text {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+  filter: blur(10px);
 }
 
 .navigation .actions {
@@ -171,23 +232,33 @@ span.icon-font {
 .navigation .actions .action-button {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
 .navigation .actions .action-button .of-h {
   display: flex;
-  justify-content: flex-end;
   width: 25px;
   cursor: pointer;
 }
 
-.navigation .actions .action-button .of-h .mid {
-  color: white;
+.navigation .actions .action-button:has(.group) {
+  overflow: hidden;
+  max-width: 165px;
 }
 
-.navigation .actions .action-button:hover .of-h span {
-  transform: translateX(200%);
-  transition: 0.6s;
+.navigation .actions .action-button:has(.group) .of-h {
+  margin: 0 8px;
+}
+
+.navigation .actions .action-button .group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.navigation .actions .action-button .of-h .mid {
+  color: white;
 }
 
 .menu-wrapper.menu-wrapper {
@@ -224,13 +295,8 @@ span.icon-font {
   cursor: pointer;
 }
 
-.hero .right-content .of-h .mid {
-  color: white;
-}
-
 .hero .right-content .hero-cta:hover ~ .of-h span {
-  transform: translateX(200%);
-  transition: 0.6s;
+  animation: heroCtaAnim 1.5s linear infinite;
 }
 
 .hero .right-content .hero-cta {
@@ -281,6 +347,11 @@ span.icon-font {
   max-width: 100%;
   overflow: hidden;
   display: flex;
+  height: 84px;
+}
+
+.carousel-wrapper:nth-child(1) {
+  margin-bottom: 16px;
 }
 
 .carousel-wrapper.mobile {
@@ -304,7 +375,7 @@ span.icon-font {
 
 .carousel-wrapper .text-carousel img {
   margin-right: 8px;
-  margin-left: 16px;
+  margin-left: 32px;
 }
 
 .carousel-wrapper .text-carousel h2 {
@@ -356,7 +427,19 @@ section.work h2 p {
   max-height: 40px;
   border: 2px solid black;
   max-width: 199px;
+  overflow: hidden;
   transform: rotate(-30deg);
+}
+
+span.liquid-bg {
+  min-width: 200%;
+  min-height: 500px;
+  border-radius: 30%;
+  position: absolute;
+  background-color: black;
+  z-index: -1;
+  transform: translateY(100%);
+  transition: 2s linear;
 }
 
 section.work h2 p span:nth-child(1) {
@@ -369,11 +452,13 @@ section.work h2 p span:nth-child(1) {
   letter-spacing: -0.32px;
   text-transform: uppercase;
   height: 16px;
+  transition: 2s linear;
 }
 
 section.work h2 p span.icon-font {
   line-height: 90%;
   height: 16px;
+  transition: 2s linear;
 }
 
 section.work .left {
@@ -432,6 +517,14 @@ section.work .left .project-text {
   margin-top: 32px;
   margin-left: 156px;
   margin-bottom: 675px;
+}
+
+section.work h2 p:hover span.liquid-bg {
+  transform: translateY(0px) rotate(360deg);
+}
+
+section.work h2 p:hover span {
+  color: white;
 }
 
 section.work .work-headline {
@@ -530,12 +623,18 @@ section.work .products .product:nth-child(1) h2 {
   opacity: 0;
   pointer-events: none;
   display: none;
+  overflow: hidden;
 }
 
 section.work .products .product:nth-child(1) p {
   opacity: 0;
   pointer-events: none;
   display: none;
+  overflow: hidden;
+}
+
+section.work h2 p:hover span {
+  color: white;
 }
 
 section.work .products .product:nth-child(2) {
@@ -590,7 +689,13 @@ section.work .products .product:nth-child(2) p {
   max-height: 40px;
   border: 2px solid black;
   max-width: 199px;
+  overflow: hidden;
   transform: rotate(15deg);
+  transition: 2s linear;
+}
+
+section.work .products .product:nth-child(2) p span {
+  transition: 2s linear;
 }
 
 section.work .products .product:nth-child(2) p span:nth-child(1) {
@@ -603,6 +708,14 @@ section.work .products .product:nth-child(2) p span:nth-child(1) {
   letter-spacing: -0.32px;
   text-transform: uppercase;
   height: 16px;
+}
+
+section.work .products .product:nth-child(2) p:hover span.liquid-bg {
+  transform: translateY(0px) rotate(360deg);
+}
+
+section.work .products .product:nth-child(2) p:hover span {
+  color: white;
 }
 
 section.work .products .product:nth-child(2) p span.icon-font {
@@ -916,11 +1029,11 @@ section.about .row .about-images img:nth-child(10) {
 }
 
 .footer {
-  padding-top: 318px;
+  padding-top: 477px;
 }
 
 .footer .contact-information {
-  margin-bottom: 507px;
+  margin-bottom: 160px;
 }
 
 .footer .contact-information h3 {
@@ -1057,6 +1170,15 @@ section.about .row .about-images img:nth-child(10) {
   animation: floatAnim 4s linear infinite;
 }
 
+@keyframes heroCtaAnim {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
 @keyframes floatAnim {
   0% {
     transform: translate(0px, 0px);
@@ -1151,7 +1273,9 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .hero .p .of-h {
-    height: 3.438vw;
+    height: 3.45vw;
+    display: flex;
+    align-items: center;
   }
 
   .navigation .actions {
@@ -1200,10 +1324,13 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .hero .right-content span {
-    rotate: 90deg;
     width: fit-content;
     height: fit-content;
     margin-top: 0.156vw;
+  }
+
+  .hero .right-content .of-h:has(span) {
+    width: 1.302vw;
   }
 
   .hero .p {
@@ -1363,46 +1490,6 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: uppercase;
   }
 
-  section.work .right {
-    width: 100%;
-    position: relative;
-    max-width: 48.02vw;
-    height: 48.438vw;
-    margin-top: 5.885vw;
-  }
-
-  section.work .right img {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  /* convert the absolute offsets to vw-based offsets so they scale consistently */
-  section.work .right .banner {
-    top: 11.719vw;
-    left: -4.688vw;
-    z-index: 1;
-  }
-
-  section.work .right .cartoon-box {
-    bottom: 4.0104vw;
-    left: 0;
-    width: 18.2292vw;
-    height: 22.0833vw;
-    z-index: 1;
-  }
-
-  section.work .right .magic-mind-bottle {
-    left: 10.052vw;
-    top: 15vw;
-    z-index: 0;
-  }
-
-  section.work .right .house-photo {
-    left: 24.219vw;
-    top: 28.854vw;
-  }
-
   section.work {
     padding-top: 9.7396vw;
     display: flex;
@@ -1528,10 +1615,10 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .right {
-    width: 100%;
     position: relative;
-    max-width: 48.75vw;
-    height: 46.679vw;
+    width: 48.75vw; /* 936px */
+    height: 46.667vw; /* 896px */
+    margin-top: 5.833vw; /* 112px */
   }
 
   section.work .right img {
@@ -1541,33 +1628,61 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .right .banner {
-    width: 19.8438vw;
-    height: 27.8646vw;
-    aspect-ratio: 381/535;
-    top: 1.6146vw;
+    width: 19.844vw; /* 381px */
+    height: 27.865vw; /* 535px */
+    aspect-ratio: 381 / 535;
+    top: 1.615vw; /* 31px */
     left: 0;
     z-index: 1;
   }
 
+  section.work .right .cartoon-box {
+    top: unset;
+    left: 2.24vw; /* 43px */
+    bottom: 4.01vw; /* 77px */
+    z-index: 1;
+    width: 13.542vw; /* 260px */
+    height: 18.958vw; /* 364px */
+    rotate: -15deg;
+  }
+
   section.work .right .cartoonish-sea-picture {
-    width: 18.4896vw;
-    height: 23.3333vw;
-    right: 0;
-    top: 0;
+    width: 13.542vw; /* 260px */
+    height: 20.521vw; /* 394px */
+    aspect-ratio: 260 / 394;
+    left: unset;
+    right: 2.396vw; /* 46px */
+    top: 1.458vw; /* 28px */
+    rotate: -15deg;
+    z-index: 0;
   }
 
   section.work .right .magic-mind-bottle-picture {
-    width: 23.9583vw;
-    height: 27.2917vw;
-    left: 12.3958vw;
-    top: 8.3333vw;
+    width: 23.958vw; /* 460px */
+    height: 27.292vw; /* 524px */
+    aspect-ratio: 460 / 524;
+    left: 12.396vw; /* 238px */
+    top: 8.333vw; /* 160px */
+    z-index: 0;
   }
 
   section.work .right .multiple-bottle {
-    width: 20.3125vw;
-    height: 21.9792vw;
-    bottom: 0;
-    right: 0;
+    width: 15.729vw; /* 302px */
+    height: 18.229vw; /* 350px */
+    aspect-ratio: 302 / 350;
+    transform: rotate(15deg);
+    left: unset;
+    top: unset;
+    bottom: 1.667vw; /* 32px */
+    right: 2.083vw; /* 40px */
+  }
+
+  section.work .products {
+    position: absolute;
+    width: 72.448vw;
+    height: 95.781vw; /* 1839px */
+    bottom: 0.833vw; /* 16px */
+    right: 0.833vw; /* 16px */
   }
 
   section.about .row:has(.about-images) .work-text-1 {
@@ -1974,7 +2089,8 @@ section.about .row .about-images img:nth-child(10) {
     padding: 0.4167vw 0.625vw;
     position: fixed;
     bottom: 0;
-    left: 0.8333vw;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.25vw;
     z-index: 1000;
     opacity: 0;

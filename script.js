@@ -80,9 +80,120 @@ function createLogoTween() {
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".carousel",
-      start: "top 110%",
-      scrub: true,
+      start: "top 100%",
+      scrub: 0.1,
     },
+  });
+
+  gsap.to(".navigation .of-h .dot", {
+    opacity: 1,
+    pointerEvents: "auto",
+    filter: "blur(0px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".carousel",
+      start: "top 30%",
+      scrub: 0.1,
+    },
+    ease: "power4.out",
+  });
+
+  gsap.to(".navigation .of-h .work-text", {
+    opacity: 1,
+    pointerEvents: "auto",
+    display: "block",
+    filter: "blur(0px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".carousel",
+      start: "top 30%",
+      scrub: 0.1,
+    },
+    ease: "power4.out",
+  });
+
+  gsap.to(".navigation .of-h .work-text", {
+    display: "none",
+    opacity: 0,
+    pointerEvents: "none",
+    filter: "blur(10px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".work",
+      start: "bottom 65%",
+      scrub: 0.1,
+    },
+    ease: "power4.out",
+  });
+
+  gsap.to(".navigation .of-h .dot", {
+    opacity: 0,
+    pointerEvents: "none",
+    filter: "blur(10px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".work",
+      start: "bottom 65%",
+      scrub: 0.1,
+    },
+    ease: "power4.out",
+    end: () => {
+      gsap.to(".navigation .of-h .about-text", {
+        opacity: 1,
+        pointerEvents: "auto",
+        display: "block",
+        filter: "blur(0px)",
+        duration: 0.4,
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top 50%",
+          end: "bottom 30%",
+          scrub: 0.1,
+        },
+        ease: "power4.out",
+      });
+
+      gsap.to(".navigation .of-h .dot", {
+        opacity: 1,
+        pointerEvents: "auto",
+        filter: "blur(0px)",
+        duration: 0.4,
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top 50%",
+          scrub: 0.1,
+        },
+        ease: "power4.out",
+      });
+    },
+  });
+
+  gsap.to(".navigation .of-h .about-text", {
+    opacity: 0,
+    pointerEvents: "none",
+    filter: "blur(10px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".footer",
+      start: "top 110%",
+      markers: true,
+      scrub: 0.1,
+    },
+    ease: "power4.out",
+  });
+
+  gsap.to(".navigation .of-h .dot", {
+    opacity: 0,
+    pointerEvents: "none",
+    filter: "blur(10px)",
+    duration: 0.4,
+    scrollTrigger: {
+      trigger: ".footer",
+      start: "top 110%",
+      markers: true,
+      scrub: 0.1,
+    },
+    ease: "power4.out",
   });
 
   logoTween = gsap.to(logoEl, {
@@ -91,8 +202,8 @@ function createLogoTween() {
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".about",
-      start: "top top",
-      scrub: true,
+      start: "top 100%",
+      scrub: 1,
     },
   });
 }
@@ -110,7 +221,6 @@ function applyResponsiveLogo() {
       : "212px";
   setLogoInlineMaxWidth(px);
   createLogoTween();
-  // refresh ScrollTrigger after layout change (Lenis doesn't expose update())
   ScrollTrigger.refresh();
 }
 
@@ -164,14 +274,14 @@ gsap.from(".button.of-h span", {
 
 //
 
-let currentScroll = 0;
+let currentScroll = window.pageYOffset;
 let isScrollingDown = true;
 
 let tween1 = gsap
   .to(".text-carousel.left", {
     xPercent: -100,
     repeat: -1,
-    duration: 20,
+    duration: 35,
     ease: "linear",
   })
   .totalProgress(0.5);
@@ -180,29 +290,43 @@ let tween2 = gsap
   .to(".text-carousel.right", {
     xPercent: -100,
     repeat: -1,
-    duration: 20,
+    duration: 35,
     ease: "linear",
-    timeScale: -1,
   })
   .totalProgress(0.5);
 
-window.addEventListener("scroll", function () {
-  if (this.window.pageYOffset > currentScroll) {
-    isScrollingDown = true;
+window.addEventListener("wheel", function (e) {
+  const newScroll = e.deltaY;
+  const scrollingDown = newScroll > currentScroll;
+
+  // only update if direction changed
+  if (newScroll > 0) {
+    if (scrollingDown !== isScrollingDown) {
+      tween1.timeScale(1);
+      tween2.timeScale(-1);
+      isScrollingDown = scrollingDown;
+    }
   } else {
-    isScrollingDown = false;
+    tween1.timeScale(-1);
+    tween2.timeScale(1);
+    isScrollingDown = scrollingDown;
   }
 
-  gsap.to(tween1, {
-    timeScale: isScrollingDown ? 1 : -1,
-  });
-
-  gsap.to(tween2, {
-    timeScale: isScrollingDown ? -1 : 1,
-  });
-
-  currentScroll = this.window.pageYOffset;
+  currentScroll = newScroll;
 });
+
+//
+
+function scrollToSection(target) {
+  const section = document.querySelector(target);
+  if (!section) return;
+
+  section.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
 //
 
 function addHeroScrollHandlers() {
@@ -351,18 +475,12 @@ menuBtn.addEventListener("click", () => {
 
 function openMenu() {
   menu.classList.add("active");
-  menuBtn.innerHTML = `
-    <rect width="15.0807" height="1.88508" transform="matrix(0.707272 0.706941 -0.707272 0.706941 1.33301 0)" fill="black"/>
-    <rect width="15.0807" height="1.88508" transform="matrix(0.707272 -0.706941 0.707272 0.706941 0 10.668)" fill="black"/>
-  `;
+  menuBtn.classList.add("active");
 }
 
 function closeMenu() {
   menu.classList.remove("active");
-  menuBtn.innerHTML = `
-    <rect width="16" height="2" fill="black"></rect>
-    <rect y="10" width="16" height="2" fill="black"></rect>
-  `;
+  menuBtn.classList.remove("active");
 }
 
 // document.addEventListener("contextmenu", function (e) {
@@ -483,4 +601,85 @@ gsap.to(".list-of-year-wrapper", {
     scrub: 1,
     pin: true,
   },
+});
+
+const buttons = document.querySelectorAll(".action-button");
+
+buttons.forEach((button) => {
+  const groups = document.querySelectorAll(".group");
+  const width = groups[0].offsetWidth;
+
+  let infiniteTween;
+
+  // function to start infinite animation
+  const startInfinite = () => {
+    // kill previous infinite tween
+    if (infiniteTween) gsap.killTweensOf(groups);
+
+    infiniteTween = gsap.to(groups, {
+      x: -width,
+      duration: 3,
+      ease: "linear",
+      modifiers: {
+        x: (x) => {
+          const val = parseFloat(x);
+          return (val <= -width ? 0 : val) + "px";
+        },
+      },
+      repeat: -1,
+    });
+  };
+
+  // start animation initially
+  startInfinite();
+
+  button.addEventListener("mouseenter", () => {
+    // pause infinite tween
+    gsap.killTweensOf(groups);
+    // move to -width smoothly on hover
+    gsap.to(groups, {
+      x: -width,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  });
+
+  button.addEventListener("mouseleave", () => {
+    gsap.to(groups, {
+      x: -width,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    // kill any temporary tween
+    gsap.killTweensOf(groups);
+    // reset position to 0 to avoid slow start
+    gsap.set(groups, { x: 0 });
+
+    // start infinite animation
+    infiniteTween = gsap.to(groups, {
+      x: -width + 32,
+      duration: 3,
+      ease: "linear",
+      modifiers: {
+        x: (x) => {
+          const val = parseFloat(x);
+          return (val <= -width ? 0 : val) + "px";
+        },
+      },
+      repeat: -1,
+    });
+  });
+  button.addEventListener("click", () => {
+    // stop animation temporarily and move slightly left
+    gsap.killTweensOf(groups);
+    gsap.to(groups, {
+      x: -width + 32,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  });
 });
