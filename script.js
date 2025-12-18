@@ -76,7 +76,6 @@ function createLogoTween() {
 
   logoTween = gsap.to(logoEl, {
     maxWidth: endWidth,
-    duration: 2,
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".carousel",
@@ -157,7 +156,6 @@ function createLogoTween() {
         opacity: 1,
         pointerEvents: "auto",
         filter: "blur(0px)",
-        duration: 0.4,
         scrollTrigger: {
           trigger: ".about",
           start: "top 50%",
@@ -196,12 +194,11 @@ function createLogoTween() {
 
   logoTween = gsap.to(logoEl, {
     maxWidth: startWidth,
-    duration: 1,
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".about",
       start: "top 100%",
-      scrub: 1,
+      scrub: 0.1,
     },
   });
 }
