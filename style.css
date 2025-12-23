@@ -116,7 +116,8 @@ span.icon-font {
   position: absolute;
   top: 48px;
   right: 0;
-  display: none;
+  display: flex;
+  transform: translateX(200%);
 }
 
 .navigation .menu-btn {
@@ -168,10 +169,6 @@ span.icon-font {
   }
 }
 
-.navigation .menu.active {
-  display: flex;
-}
-
 .navigation .menu li {
   color: #000;
   text-align: right;
@@ -182,6 +179,7 @@ span.icon-font {
   line-height: 80%;
   letter-spacing: -0.48px;
   text-transform: uppercase;
+  transform: translateX(200%);
 }
 
 .navigation .logo {
@@ -215,6 +213,7 @@ span.icon-font {
   pointer-events: none;
   display: none;
   filter: blur(10px);
+  height: 40px;
 }
 
 .navigation > .of-h .about-text {
@@ -222,6 +221,7 @@ span.icon-font {
   pointer-events: none;
   display: none;
   filter: blur(10px);
+  height: 40px;
 }
 
 .navigation .actions {
@@ -297,6 +297,10 @@ span.icon-font {
 }
 
 .hero .right-content .hero-cta:hover ~ .of-h span {
+  animation: heroCtaAnim 1.5s linear infinite;
+}
+
+.hero .right-content .of-h:hover span {
   animation: heroCtaAnim 1.5s linear infinite;
 }
 
@@ -515,7 +519,7 @@ section.work .left .project-text {
   width: 100%;
   max-width: 460px;
   margin-top: 32px;
-  margin-left: 156px;
+  margin-left: 159px;
   margin-bottom: 675px;
 }
 
@@ -992,7 +996,8 @@ section.about .row .about-images img:nth-child(10) {
   font-size: 64px;
   font-style: normal;
   font-weight: 500;
-  line-height: 80%; /* 51.2px */
+  line-height: 90%;
+  height: 44px;
   letter-spacing: -1.28px;
   text-transform: uppercase;
 }
@@ -1066,14 +1071,40 @@ section.about .row .about-images img:nth-child(10) {
   letter-spacing: -1.92px;
 }
 
-.footer .contact-information h2 > img {
+.footer .contact-information h2 > #copyBtn {
   position: absolute;
-  top: -55px;
-  right: -78px;
+  top: -40px;
+  right: -90px;
+  display: flex;
+  padding: 0 16px;
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  rotate: 15deg;
 }
 
-.footer .contact-information h2 img:hover {
+.footer .contact-information h2 #copyBtn:hover {
   animation: jump 1.5s ease-in-out;
+}
+
+.footer .contact-information h2 #copyBtn p {
+  color: #000;
+  font-size: 16px;
+  font-family: FoundersGroteskMedium;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.32px;
+  text-transform: uppercase;
+}
+
+.footer .contact-information h2 #copyBtn img {
+  width: 24px;
+  height: 24px;
 }
 
 @keyframes jump {
@@ -1304,10 +1335,6 @@ section.about .row .about-images img:nth-child(10) {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
-  .navigation .menu.active {
-    display: flex;
-  }
-
   .navigation .menu li {
     color: #000;
     text-align: right;
@@ -1352,6 +1379,8 @@ section.about .row .about-images img:nth-child(10) {
     pointer-events: none;
     display: none;
     filter: blur(0.521vw);
+    width: auto;
+    height: 2.083vw;
   }
 
   .navigation .actions {
@@ -2245,6 +2274,10 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 48.333vw;
   }
 
+  .navigation .logo {
+    max-width: 53.854vw;
+  }
+
   section.work h2 {
     font-size: 6.667vw;
     line-height: 80%;
@@ -2266,7 +2299,7 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products {
     width: 72.292vw;
-    height: 94.861vw;
+    height: 94.813vw;
   }
 
   section.work .work-left-content p {
@@ -2365,7 +2398,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .end-content {
-    margin-bottom: 11.319vw;
+    margin-bottom: 13.073vw;
   }
 
   section.work .products .product:nth-child(1) {
@@ -2388,6 +2421,7 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products .product:nth-child(2) h2 {
     color: #000;
+    height: auto;
     font-size: 48px;
     font-style: normal;
     font-weight: 500;
@@ -2400,6 +2434,23 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 7.014vw;
     right: 9.375vw;
   }
+
+  section.work .products .product:nth-child(3) h2 {
+    height: auto;
+    left: -40px;
+  }
+
+  section.about .photos .photo.even svg,
+  section.about .photos .photo.odd svg {
+    width: 4.115vw;
+    height: 4.167vw;
+  }
+
+  .navigation > .of-h .about-text,
+  .navigation > .of-h .work-text {
+    height: 2.083vw;
+    width: auto;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -2411,6 +2462,15 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 530px;
     width: 100%;
     height: auto;
+  }
+
+  .navigation > .of-h .dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .navigation > .of-h {
+    gap: 10px;
   }
 
   .hero {
@@ -2638,6 +2698,18 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: uppercase;
   }
 
+  section.work .left h2 {
+    height: auto;
+  }
+
+  section.work .work-left-content p {
+    font-size: 1.563vw;
+  }
+
+  section.work .products .product:nth-child(3) h2 {
+    left: 0;
+  }
+
   section.work .left .project-heading {
     color: #000;
     font-family: EditorialNewUltraLight;
@@ -2774,7 +2846,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .footer .contact-information {
-    margin-bottom: 723px;
+    margin-bottom: 120px;
   }
 
   .footer .contact-information h3 {
@@ -3006,7 +3078,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation .logo {
-    max-width: 212px;
+    max-width: 160px;
     width: 100%;
     max-height: 30px;
   }
@@ -3036,6 +3108,20 @@ section.about .row .about-images img:nth-child(10) {
 
   .navigation .menu li {
     font-size: 32px !important;
+  }
+
+  .navigation > .of-h {
+    gap: 4px;
+  }
+
+  .navigation > .of-h .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .navigation > .of-h .work-text,
+  .navigation > .of-h .about-text {
+    height: 24px;
   }
 
   .hero .right .of-h {
@@ -3536,7 +3622,11 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .footer .contact-information {
-    margin-bottom: 574px;
+    margin-bottom: 560px;
+  }
+
+  .footer .contact-information h2 > #copyBtn {
+    display: none;
   }
 
   .footer .contact-information h3 {

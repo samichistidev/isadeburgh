@@ -16,31 +16,31 @@ function createTransformAnimations() {
   function updateSizes() {
     const w = window.innerWidth;
 
-    if (w >= 1921) {
+    if (w > 1921) {
       biggerSize = "53.854vw";
       smallerSize = "13.333vw";
-    } else if (w > 1920) {
-      biggerSize = 1056;
-      smallerSize = 256;
-    } else if (w > 1710) {
+    } else if (w < 601) {
+      biggerSize = "160px";
+      smallerSize = "160px";
+    } else if (w < 825) {
+      biggerSize = "424px";
+      smallerSize = "212px";
+    } else if (w < 1024) {
+      biggerSize = "530px";
+      smallerSize = "265px";
+    } else if (w < 1711) {
       biggerSize = "53.854vw";
       smallerSize = "13.333vw";
-    } else if (w > 1440) {
-      biggerSize = 795;
-      smallerSize = 212;
-    } else if (w > 1024) {
-      biggerSize = 530;
-      smallerSize = 265;
-    } else if (w > 824) {
-      biggerSize = 424;
-      smallerSize = 212;
+    } else if (w < 1921) {
+      biggerSize = "1056px";
+      smallerSize = "256px";
     } else {
-      biggerSize = 160;
-      smallerSize = 160;
+      return;
     }
   }
 
   updateSizes();
+  console.log(biggerSize, smallerSize);
 
   window.addEventListener("resize", updateSizes);
 
@@ -81,31 +81,140 @@ function createTransformAnimations() {
     ease: "power4.out",
   });
 
+  // SHOW work-text on carousel
   gsap.to(".navigation .of-h .work-text", {
-    display: "block",
     opacity: 1,
+    display: "block",
     pointerEvents: "auto",
     filter: "blur(0px)",
     ease: "power4.out",
-    duration: 1,
     scrollTrigger: {
       trigger: ".carousel",
       start: "top top",
       scrub: true,
     },
+    onComplete: function () {
+      gsap.to(".navigation .of-h .dot", {
+        opacity: 0,
+        pointerEvents: "none",
+        filter: "blur(10px)",
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top bottom",
+          end: "top center",
+          scrub: true,
+        },
+      });
+
+      // HIDE work-text on about
+      gsap.to(".navigation .of-h .work-text", {
+        opacity: 0,
+        pointerEvents: "none",
+        filter: "blur(10px)",
+        display: "none",
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".about",
+          start: "top bottom",
+          end: "top center",
+          scrub: true,
+        },
+      });
+    },
+  });
+
+  // HIDE dot on about
+
+  gsap.to(".navigation .of-h .dot", {
+    opacity: 1,
+    pointerEvents: "auto",
+    filter: "blur(0px)",
+    duration: 1,
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top top",
+      scrub: true,
+    },
+    ease: "power4.out",
+  });
+
+  gsap.to(".navigation .of-h .about-text", {
+    display: "block",
+    opacity: 1,
+    pointerEvents: "auto",
+    filter: "blur(0px)",
+    duration: 1,
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top top",
+      scrub: true,
+    },
+    ease: "power4.out",
   });
 
   gsap.to(logoEl, {
     maxWidth: smallerSize,
     ease: "power4.out",
-    duration: 0.5,
     scrollTrigger: {
-      trigger: ".photos",
+      trigger: ".about",
       start: "top top",
+      end: "+=100%",
       scrub: true,
       pin: true,
     },
+    onComplete: function () {
+      gsap.to(logoEl, {
+        maxWidth: biggerSize,
+        ease: "power4.out",
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top bottom",
+          scrub: true,
+        },
+      });
+
+      gsap.to(".navigation .of-h .dot", {
+        opacity: 0,
+        pointerEvents: "none",
+        filter: "blur(10px)",
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top bottom",
+          scrub: true,
+        },
+        ease: "power4.out",
+      });
+
+      gsap.to(".navigation .of-h .about-text", {
+        display: "none",
+        opacity: 0,
+        pointerEvents: "none",
+        filter: "blur(10px)",
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top bottom",
+          scrub: true,
+        },
+        ease: "power4.out",
+      });
+    },
   });
+
+  // gsap.to(".list-of-year", {
+  //   xPercent: -100.1,
+  //   ease: "power4.out",
+  //   scrollTrigger: {
+  //     trigger: ".list-of-year-wrapper",
+  //     scroller: "body",
+  //     start: "bottom bottom",
+  //     scrub: 1,
+  //     pin: true,
+  //   },
+  // });
 }
 
 function initCarouselScrollAnimation() {
@@ -333,20 +442,6 @@ function initAllLoadingAnimations() {
   });
 }
 
-// function initListOfYearsAnimations() {
-//   gsap.to(".list-of-year", {
-//     xPercent: -100.1,
-//     ease: "power4.out",
-//     scrollTrigger: {
-//       trigger: ".list-of-year-wrapper",
-//       start: "bottom bottom",
-//       scroller: "body",
-//       scrub: 1,
-//       pin: true,
-//     },
-//   });
-// }
-
 function initAboutSectionDrag() {
   const container = document.querySelector(".about-images");
   const images = container.querySelectorAll("img");
@@ -437,7 +532,7 @@ function initAboutSectionDrag() {
 }
 
 function initButtonAnimation() {
-  const buttons = document.querySelectorAll(".action-button");
+  const buttons = document.querySelectorAll(".action-button.button");
 
   buttons.forEach((button) => {
     const groups = document.querySelectorAll(".group");
@@ -545,20 +640,33 @@ function initGsapAndLenis() {
 }
 
 function openMenu() {
-  menu.classList.add("active");
   menuBtn.classList.add("active");
+  gsap.to(".menu", {
+    display: "flex",
+    transform: "translateX(0%)",
+  });
+  gsap.to(".menu li", {
+    transform: "translateX(0%)",
+    stagger: 0.1,
+  });
 }
 
 function closeMenu() {
-  menu.classList.remove("active");
   menuBtn.classList.remove("active");
+  gsap.to(".menu", {
+    transform: "translateX(200%)",
+  });
+  gsap.to(".menu li", {
+    transform: "translateX(200%)",
+    stagger: 0.1,
+  });
 }
 
 function initHandleMenu() {
   let autoCloseTimeout = null;
 
   menuBtn.addEventListener("click", () => {
-    if (menu.classList.contains("active")) {
+    if (menuBtn.classList.contains("active")) {
       closeMenu();
     } else {
       openMenu();
@@ -574,7 +682,6 @@ function initHandleMenu() {
 window.addEventListener("DOMContentLoaded", () => {
   initGsapAndLenis();
   initAllLoadingAnimations();
-  // initListOfYearsAnimations();
   initAboutSectionDrag();
   initHandleMenu();
   initMenuLinksHoverAnimation();
