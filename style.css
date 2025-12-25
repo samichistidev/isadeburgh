@@ -1079,6 +1079,13 @@ section.about .row .about-images img:nth-child(10) {
   margin-right: 16px;
 }
 
+.list-of-year-wrapper .list img {
+  max-width: 301px;
+  width: 100%;
+  min-width: 301px;
+  aspect-ratio: 1/1;
+}
+
 .footer {
   padding-top: 477px;
 }
@@ -2981,8 +2988,13 @@ section.about .row .about-images img:nth-child(10) {
     top: 0;
   }
 
+  .list-of-year .list {
+    margin-right: 1.563vw;
+  }
+
   .list-of-year .list img {
-    max-width: 236px;
+    max-width: 23.047vw;
+    min-width: 23.047vw;
   }
 
   .list-of-year h2 {
@@ -2992,6 +3004,7 @@ section.about .row .about-images img:nth-child(10) {
     font-style: normal;
     font-weight: 500;
     line-height: 80%;
+    height: auto;
     letter-spacing: -0.8px;
     text-transform: uppercase;
   }
@@ -3844,6 +3857,7 @@ section.about .row .about-images img:nth-child(10) {
 
   .list-of-year .list img {
     max-width: 47.074vw;
+    min-width: 47.074vw;
   }
 
   .list-of-year h2 {
