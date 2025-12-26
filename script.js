@@ -6,33 +6,6 @@ let menuBtn = document.querySelector(".menu-btn");
 let menu = document.querySelector(".menu");
 let logoTween = null;
 
-const workHeadingSplit = new SplitText(".work .left h2 div", { type: "lines" });
-const workProjectDetails = new SplitText(".work .left .work-left-content p", {
-  type: "lines",
-});
-
-gsap.from(workHeadingSplit.lines, {
-  yPercent: 300,
-  duration: 1,
-  ease: "power4.out",
-  stagger: 0.1,
-  scrollTrigger: {
-    trigger: ".work",
-    start: "top 50%",
-  },
-});
-
-gsap.from(workProjectDetails.lines, {
-  yPercent: 300,
-  duration: 1,
-  ease: "power4.out",
-  stagger: 0.1,
-  scrollTrigger: {
-    trigger: ".work",
-    start: "top 50%",
-  },
-});
-
 function createTransformAnimations() {
   const logoEl = document.querySelector(".navigation .logo");
   if (!logoEl) return;
