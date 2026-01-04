@@ -875,41 +875,60 @@ function workSectionBottleAnimation() {
 
   nextProjectBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      let currentFirstProduct = document.querySelector(".first");
-      let currentSecondProduct = document.querySelector(".second");
-      let currentThirdProduct = document.querySelector(".third");
+      const currentFirstProduct = document.querySelector(".first");
+      const currentSecondProduct = document.querySelector(".second");
+      const currentThirdProduct = document.querySelector(".third");
 
-      if (currentBottle >= 2) {
-        currentBottle = 0;
-      } else {
-        currentBottle += 1;
+      currentBottle = (currentBottle + 1) % 3;
+
+      if (currentBottle === 1) currentContent = workContents.little_saints;
+      else if (currentBottle === 2) currentContent = workContents.sidedish;
+      else currentContent = workContents.magic_mind;
+
+      function resetProduct(product) {
+        if (!product) return;
+        gsap.set(product, { clearProps: "all" });
+        const btnP = product.querySelector("p");
+        const heading = product.querySelector("h2");
+        const img = product.querySelector("img");
+
+        if (btnP && heading) {
+          gsap.set([btnP, heading], {
+            opacity: 1,
+            pointerEvents: "auto",
+            display: "flex",
+          });
+        }
+
+        if (img) {
+          gsap.set(img, {
+            filter: "blur(16px)",
+          });
+        }
       }
 
-      if (currentBottle == 1) {
-        currentContent = workContents.little_saints;
-      } else if (currentBottle == 2) {
-        currentContent = workContents.sidedish;
-      } else {
-        currentContent = workContents.magic_mind;
-      }
+      resetProduct(currentFirstProduct);
+      resetProduct(currentSecondProduct);
+      resetProduct(currentThirdProduct);
 
       currentFirstProduct.classList.remove("first");
       currentFirstProduct.classList.add("third");
+
       gsap.to(currentFirstProduct, {
         opacity: 0,
+        duration: 0,
+        display: "none",
         pointerEvents: "none",
       });
 
-      let leftSideContent = document.querySelector("#work .left");
-      let rightSideContents = document.querySelectorAll(
+      const leftSideContent = document.querySelector("#work .left");
+      const rightSideContents = document.querySelectorAll(
         "#work .right:not(.mobile) > *"
       );
 
-      hasRun = false;
-
-      let currentNextButton = currentSecondProduct.querySelector("p");
-      let currentHeading = currentSecondProduct.querySelector("h2");
-      let currentImage = currentSecondProduct.querySelector("img");
+      const currentNextButton = currentSecondProduct.querySelector("p");
+      const currentHeading = currentSecondProduct.querySelector("h2");
+      const currentImage = currentSecondProduct.querySelector("img");
 
       gsap.to([currentNextButton, currentHeading], {
         opacity: 0,
@@ -940,19 +959,27 @@ function workSectionBottleAnimation() {
           filter: "blur(0px)",
           duration: 1,
           onComplete: () => {
+            // swap roles
             currentSecondProduct.classList.remove("second");
             currentSecondProduct.classList.add("first");
+
             currentThirdProduct.classList.remove("third");
             currentThirdProduct.classList.add("second");
+
+            resetProduct(currentFirstProduct);
+            resetProduct(currentImage);
+
             gsap.to(currentFirstProduct, {
               opacity: 1,
               pointerEvents: "auto",
+              duration: 0.3,
             });
           },
         });
       }, 400);
 
-      let tween = gsap.from(leftSideContent, {
+      hasRun = false;
+      const tween = gsap.from(leftSideContent, {
         delay: 1,
         duration: 1,
         left: "-150%",
@@ -962,13 +989,13 @@ function workSectionBottleAnimation() {
             hasRun = true;
 
             projectMainHeading.innerHTML = `
-        ${currentContent.headline}
-        <p class="previous-btn mh-effect">
-          <span class="mh-effect">PREVIOUS PROJECT</span>
-          <span class="icon-font mh-effect">→</span>
-          <span class="liquid-bg"></span>
-        </p>
-      `;
+          ${currentContent.headline}
+          <p class="previous-btn mh-effect">
+            <span class="mh-effect">PREVIOUS PROJECT</span>
+            <span class="icon-font mh-effect">→</span>
+            <span class="liquid-bg"></span>
+          </p>
+        `;
 
             year.innerHTML = currentContent.year;
             client.innerHTML = currentContent.client;
@@ -992,7 +1019,7 @@ function workSectionBottleAnimation() {
         delay: 1,
         filter: "blur(16px)",
         duration: 1,
-        power: "power4.out",
+        ease: "power4.out",
       });
     });
   });

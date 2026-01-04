@@ -655,8 +655,10 @@ section.work .products .product.first {
   position: absolute;
   top: 0;
   left: 0;
-  max-width: 264px;
   height: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 section.work .products .product.first h2 {
@@ -685,8 +687,6 @@ section.work .products .product.second {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 331.21px;
-  width: 100%;
 }
 
 section.work .products .product.second h2 {
@@ -702,6 +702,7 @@ section.work .products .product.second h2 {
   bottom: 140px;
   left: 0;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 section.work .products .product.third {
@@ -771,9 +772,9 @@ section.work .products .product.second img {
 }
 
 section.work .products .product.first img {
-  rotate: 15deg;
   position: relative;
-  left: 50px;
+  rotate: 15deg;
+  transition: 0.5s;
 }
 
 section.work .products .product.third img {
@@ -797,8 +798,8 @@ section.work .products .product.third h2 {
 }
 
 section.work .products .product.third p {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0 !important;
+  pointer-events: none !important;
   cursor: pointer;
 }
 
@@ -1900,7 +1901,6 @@ section.about .row .about-images img:nth-child(10) {
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 13.75vw;
     height: 22.917vw;
   }
 
@@ -1911,8 +1911,6 @@ section.about .row .about-images img:nth-child(10) {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 17.251vw;
-    width: 100%;
     height: 22.917vw;
   }
 
@@ -1952,6 +1950,7 @@ section.about .row .about-images img:nth-child(10) {
     rotate: -15deg;
     width: 100%;
     height: 100%;
+    left: 3.418vw;
     object-fit: contain;
   }
 
@@ -1959,7 +1958,7 @@ section.about .row .about-images img:nth-child(10) {
     rotate: 15deg;
     position: relative;
     height: 22.917vw;
-    left: 2.604vw;
+    transform: translateX(2.604vw);
   }
 
   section.work .products .product.third img {
@@ -2894,7 +2893,6 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .products .product.first {
-    max-width: 84px;
     height: 220px;
   }
 
@@ -3695,7 +3693,6 @@ section.about .row .about-images img:nth-child(10) {
     height: 320px;
     display: flex;
     justify-content: center;
-    width: 200px;
     left: 50%;
     transform: translate(-50%);
   }
@@ -3709,7 +3706,6 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products .product.second {
     left: 0;
-    width: 185px;
     height: 362px;
     bottom: 196px;
   }
@@ -3718,7 +3714,6 @@ section.about .row .about-images img:nth-child(10) {
     height: 100%;
     width: fit-content;
     position: absolute;
-    left: 35px;
     max-width: fit-content;
   }
 
