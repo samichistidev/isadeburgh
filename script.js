@@ -62,12 +62,6 @@ function createTransformAnimations() {
           start: "top 80%",
           end: "+=400",
           scrub: true,
-          onUpdate(self) {
-            const progress = self.progress; // 0 → 1
-            const width = biggerSize - progress * (biggerSize - smallerSize);
-
-            gsap.set(".logo", { maxWidth: width });
-          },
         },
 
         onComplete: function () {
@@ -77,8 +71,8 @@ function createTransformAnimations() {
             scrollTrigger: {
               trigger: ".about",
               start: "top -10%",
-              end: "+=300",
-              scrub: 1,
+              end: "+=400",
+              scrub: true,
             },
             onComplete: function () {
               gsap.to(logoEl, {
@@ -224,6 +218,7 @@ function createTransformAnimations() {
       scroller: "body",
       start: "bottom bottom",
       pin: true,
+      end: "+=2000",
       scrub: 1,
     },
   });

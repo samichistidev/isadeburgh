@@ -115,7 +115,7 @@ span.icon-font {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(40px);
   z-index: -1;
   mask-image: linear-gradient(
     to bottom,
@@ -209,6 +209,13 @@ span.icon-font {
   will-change: max-width;
 }
 
+.navigation .about-logo {
+  max-width: 256px;
+  width: 100%;
+  height: auto;
+  will-change: max-width;
+}
+
 .navigation > .of-h {
   width: 100%;
   height: auto;
@@ -216,6 +223,13 @@ span.icon-font {
   display: flex;
   gap: 16px;
   align-items: center;
+}
+
+.navigation .of-h:has(.about-page-text) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
 }
 
 .navigation > .of-h .dot {
@@ -226,6 +240,13 @@ span.icon-font {
   opacity: 0;
   pointer-events: none;
   filter: blur(12px);
+}
+
+.navigation > .of-h .about-dot {
+  width: 16px;
+  height: 16px;
+  background-color: black;
+  border-radius: 50%;
 }
 
 .navigation > .of-h .work-text {
@@ -772,6 +793,7 @@ section.work .products .product.second p span.icon-font {
 section.work .products .product.second img {
   filter: blur(12px);
   rotate: -15deg;
+  transition: 0.2s linear;
 }
 
 section.work .products .product.first img {
@@ -804,6 +826,10 @@ section.work .products .product.third p {
   opacity: 0 !important;
   pointer-events: none !important;
   cursor: pointer;
+}
+
+section.work .products .product.second:hover img {
+  filter: blur(0) !important;
 }
 
 section.about .row:has(.about-images) .work-text-1 {
@@ -1441,8 +1467,6 @@ section.about .row .about-images img:nth-child(10) {
     width: 100%;
     padding: 0.833vw;
     max-height: 9.792vw;
-    background: rgba(255, 254, 252, 0);
-    backdrop-filter: blur(0.521vw);
   }
 
   .navigation .menu {
