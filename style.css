@@ -3091,6 +3091,7 @@ section.about .row .about-images img:nth-child(10) {
   .list-of-year .list img {
     max-width: 23.047vw;
     min-width: 23.047vw;
+    height: 23.047vw;
   }
 
   .list-of-year h2 {
@@ -3976,6 +3977,7 @@ section.about .row .about-images img:nth-child(10) {
   .list-of-year .list img {
     max-width: 47.074vw;
     min-width: 47.074vw;
+    height: 47.074vw;
   }
 
   .list-of-year h2 {
