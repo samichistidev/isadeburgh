@@ -237,11 +237,55 @@ function createTransformAnimations() {
   });
 }
 
+// function initCarouselScrollAnimation() {
+//   let currentScroll = window.pageYOffset;
+//   let isScrollingDown = true;
+
+//   let tween1 = gsap
+//     .to(".text-carousel.left", {
+//       xPercent: -100,
+//       repeat: -1,
+//       duration: 35,
+//       ease: "linear",
+//     })
+//     .totalProgress(0.5);
+
+//   let tween2 = gsap
+//     .to(".text-carousel.right", {
+//       xPercent: -100,
+//       repeat: -1,
+//       duration: 35,
+//       ease: "linear",
+//     })
+//     .totalProgress(0.5);
+//   tween2.timeScale(-1);
+
+//   window.addEventListener("wheel", function (e) {
+//     const newScroll = e.deltaY;
+//     const scrollingDown = newScroll > currentScroll;
+
+//     // only update if direction changed
+//     if (newScroll > 0) {
+//       if (scrollingDown !== isScrollingDown) {
+//         tween1.timeScale(1);
+//         tween2.timeScale(-1);
+//         isScrollingDown = scrollingDown;
+//       }
+//     } else {
+//       tween1.timeScale(-1);
+//       tween2.timeScale(1);
+//       isScrollingDown = scrollingDown;
+//     }
+
+//     currentScroll = newScroll;
+//   });
+// }
+
 function initCarouselScrollAnimation() {
-  let currentScroll = window.pageYOffset;
+  let lastScrollPos = window.pageYOffset;
   let isScrollingDown = true;
 
-  let tween1 = gsap
+  const tween1 = gsap
     .to(".text-carousel.left", {
       xPercent: -100,
       repeat: -1,
@@ -250,7 +294,7 @@ function initCarouselScrollAnimation() {
     })
     .totalProgress(0.5);
 
-  let tween2 = gsap
+  const tween2 = gsap
     .to(".text-carousel.right", {
       xPercent: -100,
       repeat: -1,
@@ -258,27 +302,51 @@ function initCarouselScrollAnimation() {
       ease: "linear",
     })
     .totalProgress(0.5);
+
   tween2.timeScale(-1);
 
-  window.addEventListener("wheel", function (e) {
-    const newScroll = e.deltaY;
-    const scrollingDown = newScroll > currentScroll;
+  function updateDirection(currentPos) {
+    const scrollingDown = currentPos > lastScrollPos;
 
-    // only update if direction changed
-    if (newScroll > 0) {
-      if (scrollingDown !== isScrollingDown) {
-        tween1.timeScale(1);
-        tween2.timeScale(-1);
-        isScrollingDown = scrollingDown;
-      }
-    } else {
-      tween1.timeScale(-1);
-      tween2.timeScale(1);
+    if (scrollingDown !== isScrollingDown) {
+      tween1.timeScale(scrollingDown ? 1 : -1);
+      tween2.timeScale(scrollingDown ? -1 : 1);
       isScrollingDown = scrollingDown;
     }
 
-    currentScroll = newScroll;
-  });
+    lastScrollPos = currentPos;
+  }
+
+  // Desktop
+  window.addEventListener(
+    "wheel",
+    () => {
+      updateDirection(window.pageYOffset);
+    },
+    { passive: true }
+  );
+
+  // Mobile
+  let touchStartY = 0;
+
+  window.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      const touchCurrentY = e.touches[0].clientY;
+      const fakeScrollPos = touchStartY - touchCurrentY;
+
+      updateDirection(lastScrollPos + fakeScrollPos);
+    },
+    { passive: true }
+  );
 }
 
 function scrollToSection(target) {
@@ -673,6 +741,15 @@ function initButtonAnimation() {
     });
 
     button.addEventListener("mouseleave", () => {
+      let tl = gsap.timeline();
+      tl.to(groups, {
+        x: +32,
+      }).to(groups, {
+        x: -width,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
       gsap.to(groups, {
         x: -width,
         duration: 0.5,
@@ -684,7 +761,7 @@ function initButtonAnimation() {
       gsap.set(groups, { x: 0 });
 
       infiniteTween = gsap.from(groups, {
-        x: -width + 32,
+        x: -width,
         duration: 3,
         ease: "linear",
         repeat: -1,
@@ -692,6 +769,7 @@ function initButtonAnimation() {
     });
 
     button.addEventListener("click", () => {
+      isClick = true;
       // stop animation temporarily and move slightly left
       gsap.killTweensOf(groups);
       gsap.to(groups, {
@@ -703,6 +781,9 @@ function initButtonAnimation() {
     });
   });
 }
+
+// DOM লোড হলে ফাংশন কল করুন
+document.addEventListener("DOMContentLoaded", initButtonAnimation);
 
 function initCopySystem(modal, target, btn) {
   btn.addEventListener("click", () => {
