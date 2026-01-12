@@ -750,7 +750,7 @@ section.work .products .product.second h2 {
   letter-spacing: -2.56px;
   text-transform: uppercase;
   position: absolute;
-  bottom: 154px;
+  bottom: 142px;
   left: 0;
   margin-bottom: 0;
   white-space: nowrap;
@@ -772,7 +772,7 @@ section.work .products .product.second p {
   gap: 16px;
   position: absolute;
   left: 0;
-  bottom: 64px;
+  bottom: 72px;
   align-items: center;
   white-space: nowrap;
   justify-content: center;
@@ -1340,6 +1340,7 @@ section.about .row .about-images img:nth-child(10) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .footer .footer-content #goToTop {
@@ -1627,6 +1628,13 @@ section.about .row .about-images img:nth-child(10) {
     will-change: max-width;
   }
 
+  .navigation .about-logo {
+    width: 13.333vw;
+    max-width: 13.333vw;
+    height: auto;
+    will-change: max-width;
+  }
+
   .navigation > .of-h {
     width: 100%;
     height: auto;
@@ -1664,7 +1672,6 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation > .of-h .about-page-text {
-    filter: blur(0.521vw);
     width: auto;
     height: 2.083vw;
   }
@@ -2673,7 +2680,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation .about-logo {
-    max-width: 53.854vw;
+    max-width: 13.333vw;
   }
 
   section.work h2 {
@@ -2826,7 +2833,7 @@ section.about .row .about-images img:nth-child(10) {
     line-height: 80%; /* 38.4px */
     letter-spacing: -1.92px;
     text-transform: uppercase;
-    bottom: 9.375vw;
+    bottom: 8.021vw;
   }
 
   section.work .products .product.third {
@@ -2900,7 +2907,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation .about-logo {
-    max-width: 530px;
+    max-width: 256px;
     width: 100%;
     height: auto;
   }
@@ -2913,6 +2920,15 @@ section.about .row .about-images img:nth-child(10) {
   .navigation > .of-h .about-dot {
     width: 12px;
     height: 12px;
+  }
+
+  .navigation > .of-h .about-page-text {
+    height: 40px;
+  }
+
+  .navigation > .of-h .work-text,
+  .navigation > .of-h .about-text {
+    height: 40px;
   }
 
   .navigation > .of-h {
@@ -3480,8 +3496,13 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation .about-logo {
-    width: 53.711vw;
+    width: 212px;
     max-width: 424px;
+  }
+
+  .navigation > .of-h .about-page-text {
+    height: 32px;
+    width: auto;
   }
 
   .hero {
@@ -3504,6 +3525,10 @@ section.about .row .about-images img:nth-child(10) {
   section.work h2 p {
     bottom: 38px;
     right: -264px;
+  }
+
+  section.work.work-page {
+    padding-top: 120px;
   }
 
   section.work .left {

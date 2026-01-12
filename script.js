@@ -40,7 +40,7 @@ function createTransformAnimations() {
     } else if (w < 825) {
       biggerSize = "424px";
       smallerSize = "212px";
-    } else if (w < 1024) {
+    } else if (w < 1025) {
       biggerSize = "530px";
       smallerSize = "265px";
     } else if (w < 1711) {
