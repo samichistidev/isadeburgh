@@ -50,6 +50,12 @@
       as="file"
       href="fonts/EditorialNew/EditorialNew-Ultralight.otf"
     />
+    <style>
+      html,
+      body {
+        overflow-y: scroll;
+      }
+    </style>
     <title>Isa De Burgh</title>
   </head>
   <body>
@@ -914,7 +920,6 @@
             if (i === 0) p.classList.add("end-last");
             disciplines.appendChild(p);
           });
-
           if (content.project_text === null) {
             document.querySelector(".project-heading").style.pointerEvents =
               "none";

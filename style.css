@@ -64,7 +64,7 @@ body {
   z-index: 9999999999;
   padding: 16px;
   width: 100vw;
-  height: 101vh;
+  height: 100vh;
 }
 
 #loaderText {
@@ -1674,6 +1674,10 @@ section.about .row .about-images img:nth-child(10) {
   100% {
     transform: translateX(0%);
   }
+}
+
+.about.about-page .photos {
+  padding-top: 160px;
 }
 
 .footer .footer-content p {
