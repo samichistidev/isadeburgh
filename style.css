@@ -1111,7 +1111,7 @@ section.work .products .product.second p span.icon-font {
 
 section.work .products .product.second img {
   filter: blur(12px);
-  rotate: -15deg;
+  transform: rotate(-15deg) !important;
   transition: 0.2s linear;
 }
 
