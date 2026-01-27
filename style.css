@@ -623,7 +623,7 @@ section.work .left .project-text {
   max-width: 460px;
   margin-top: 32px;
   margin-left: 159px;
-  margin-bottom: 640px;
+  margin-bottom: 200px;
 }
 
 section.work h2 p:hover span.liquid-bg {
@@ -4686,7 +4686,7 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 200;
     line-height: 100%;
     letter-spacing: -0.32px;
-    margin-top: 16px;
+    margin-top: 90px;
     margin-left: auto;
     max-width: 280px;
     height: 206px;
@@ -4780,8 +4780,7 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products .product.first img {
     height: 320px;
-    width: 122px;
-    max-width: fit-content;
+    width: auto;
     left: 0;
   }
 
@@ -4795,9 +4794,8 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .products .product.second img {
-    height: 100%;
-    width: fit-content;
-    max-width: fit-content;
+    height: 320px;
+    width: auto;
   }
 
   section.work .products .product.second h2 {
@@ -4833,13 +4831,14 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 500;
     line-height: 80%; /* 25.6px */
     bottom: 64px;
+    width: fit-content;
     letter-spacing: -1.28px;
     text-align: right;
     text-transform: uppercase;
   }
 
   section.work .products .product.third img {
-    width: 53px;
+    width: auto;
     height: 172px;
   }
 
@@ -5151,7 +5150,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .right.wild_elements_images {
-    margin-bottom: 830px !important;
+    margin-bottom: 750px !important;
   }
 
   section.work .right .wild-elements-motivation img {
