@@ -666,26 +666,33 @@ function initAboutSectionDrag() {
 
 function initButtonAnimation() {
   const buttons = document.querySelectorAll(".action-button.button");
+  const groups = document.querySelectorAll(".group"); // get all group elements
+  if (groups.length === 0) return;
 
-  buttons.forEach((button) => {
-    const groups = document.querySelectorAll(".group");
-    const width = groups[0].offsetWidth;
+  const width = groups[0].offsetWidth; // width to scroll
+  let infiniteTween;
 
-    let infiniteTween;
+  // Function to start the infinite carousel animation
+  const startInfinite = () => {
+    if (infiniteTween) gsap.killTweensOf(groups);
 
-    const startInfinite = () => {
-      if (infiniteTween) gsap.killTweensOf(groups);
-
-      infiniteTween = gsap.from(groups, {
+    infiniteTween = gsap.fromTo(
+      groups,
+      { x: 0 },
+      {
         x: -width,
         duration: 3,
         ease: "linear",
         repeat: -1,
-      });
-    };
+      },
+    );
+  };
 
-    startInfinite();
+  // Start carousel immediately on page load
+  startInfinite();
 
+  // Add hover and click interactions for each button
+  buttons.forEach((button) => {
     button.addEventListener("mouseenter", () => {
       gsap.killTweensOf(groups);
       gsap.to(groups, {
@@ -697,39 +704,15 @@ function initButtonAnimation() {
     });
 
     button.addEventListener("mouseleave", () => {
-      let tl = gsap.timeline();
-      tl.to(groups, {
-        x: +32,
-      }).to(groups, {
-        x: -width,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-      gsap.to(groups, {
-        x: -width,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-
       gsap.killTweensOf(groups);
-      gsap.set(groups, { x: 0 });
-
-      infiniteTween = gsap.from(groups, {
-        x: -width,
-        duration: 3,
-        ease: "linear",
-        repeat: -1,
-      });
+      gsap.set(groups, { x: 0 }); // reset before restarting
+      startInfinite();
     });
 
     button.addEventListener("click", () => {
-      isClick = true;
-      // stop animation temporarily and move slightly left
       gsap.killTweensOf(groups);
       gsap.to(groups, {
-        x: -width + 32,
+        x: -width + 32, // slight shift on click
         duration: 0.5,
         ease: "power2.out",
         overwrite: "auto",
@@ -737,6 +720,9 @@ function initButtonAnimation() {
     });
   });
 }
+
+// Initialize after DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initButtonAnimation);
 
 document.addEventListener("DOMContentLoaded", initButtonAnimation);
 
@@ -874,182 +860,183 @@ let workContents = {
     project_text:
       "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
     bottle_image: "magic_mind_bottle.png",
-  },
-  little_saints: {
-    headline: "LITTLE SAINTS",
-    year: "2022-2023 ",
-    client: "LITTLE SAINTS",
-    disciplines: [
-      "PHOTO DIRECTION & STYLING",
-      "ART DIRECTION",
-      "ORGAMIC DIGITAL CREATIVE STRATEGY",
-      "GRAPHIC DESIGN",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Little Saints combines fast-acting CBD, aromatic terpenes, and adaptogenic reishi to support relaxation, clarity, and emotional balance, naturally. The Paloma blend leans into the crisp zip of grapefruit and lime, softened with subtle herbal notes that linger just long enough to remind you to breathe deeper. It’s sugar-free, alcohol-free, and crafted for those who want the ritual of a drink without the crash that follows. Sip it after a long day, with friends at a gathering, or during your creative hours when you want your mind to flow without fog. Every can is a small ceremony—light, mindful, and modern—designed to help you tap into the best version of yourself.",
-    bottle_image: "little_saints.png",
-  },
-  sidedish: {
-    headline: "SIDEDISH",
-    year: "2020-PRESENT",
-    client: "SIDEDISH",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "sidedish.png",
-  },
-  wild_elements: {
-    headline: "WILD ELEMENTS",
-    year: "2020-PRESENT",
-    client: "WILD ELEMENTS",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "wild_elements.png",
-  },
-  de_soi: {
-    headline: "DE SOI",
-    year: "2020-PRESENT",
-    client: "DE SOI",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "de_soi.png",
+    right_images: "magic_mind_images",
   },
   earth_bar: {
     headline: "EARTH BAR",
-    year: "2020-PRESENT",
+    year: "2019-2023",
     client: "EARTH BAR",
     disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      "Brand Redesign - Content Strategy",
+      "Max Lugavere x Earthbar: The Genius Smoothie",
+      "Email, SMS & Social Marketing Direction",
+      "Copywriting",
+      "Creative Video Content",
+      "Partnerships",
     ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    project_text: null,
     bottle_image: "earth_bar.png",
+    right_images: "earthbar_images",
   },
-  symboime: {
-    headline: "SYMBOIME",
-    year: "2020-PRESENT",
-    client: "SYMBOIME",
+  sidedish: {
+    headline: "SideDish",
+    year: "2021-2023",
+    client: "SideDish",
     disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      "Graphic Design",
+      "Content Direction",
+      "Video Production",
+      "Email & Social Marketing Direction",
+      "Partnerships",
+      "Product Launch Content Strategies",
     ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "symboime.png",
+    project_text: null,
+    bottle_image: "sidedish.png",
+    right_images: "sidedish_images",
   },
-  fx_chocolate: {
-    headline: "FX CHOCOLATE",
-    year: "2020-PRESENT",
-    client: "FX CHOCOLATE",
+  wild_elements: {
+    headline: "Wild Elements",
+    year: "2022-2023",
+    client: "Wild Elements",
     disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      "Video Production",
+      "Social Content Direction",
+      "Graphic Design",
+      "Print Design",
+      "Email & Social Marketing Direction",
+      "Product Launch Creative Strategy",
     ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "fx_chocolate.png",
+    project_text: null,
+    bottle_image: "wild_elements.png",
+    right_images: "wild_elements_images",
   },
-  brami: {
-    headline: "BRAMI",
-    year: "2020-PRESENT",
-    client: "BRAMI",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "brami.png",
-  },
-  quicksilver_scientific: {
-    headline: "QUICKSILVER SCIENTIFIC",
-    year: "2020-PRESENT",
-    client: "QUICKSILVER SCIENTIFIC",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "quicksilver_scientific.png",
-  },
-  faherty: {
-    headline: "FAHERTY",
-    year: "2020-PRESENT",
-    client: "FAHERTY",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "faherty.png",
-  },
-  colgate: {
-    headline: "COLGATE",
-    year: "2020-PRESENT",
-    client: "COLGATE",
-    disciplines: [
-      "ART DIRECTION",
-      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-      "FIELD MARKETING DISPLAY DESIGN",
-      "RETAIL DISPLAY DESIGN",
-      "PHOTOGRAPHY DIRECTION & STYLING",
-      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-    ],
-    project_text:
-      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-    bottle_image: "colgate.png",
-  },
+  // little_saints: {
+  //   headline: "LITTLE SAINTS",
+  //   year: "2022-2023 ",
+  //   client: "LITTLE SAINTS",
+  //   disciplines: [
+  //     "PHOTO DIRECTION & STYLING",
+  //     "ART DIRECTION",
+  //     "ORGAMIC DIGITAL CREATIVE STRATEGY",
+  //     "GRAPHIC DESIGN",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Little Saints combines fast-acting CBD, aromatic terpenes, and adaptogenic reishi to support relaxation, clarity, and emotional balance, naturally. The Paloma blend leans into the crisp zip of grapefruit and lime, softened with subtle herbal notes that linger just long enough to remind you to breathe deeper. It’s sugar-free, alcohol-free, and crafted for those who want the ritual of a drink without the crash that follows. Sip it after a long day, with friends at a gathering, or during your creative hours when you want your mind to flow without fog. Every can is a small ceremony—light, mindful, and modern—designed to help you tap into the best version of yourself.",
+  //   bottle_image: "little_saints.png",
+  // },
+  // de_soi: {
+  //   headline: "DE SOI",
+  //   year: "2020-PRESENT",
+  //   client: "DE SOI",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "de_soi.png",
+  // },
+  // symboime: {
+  //   headline: "SYMBOIME",
+  //   year: "2020-PRESENT",
+  //   client: "SYMBOIME",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "symboime.png",
+  // },
+  // fx_chocolate: {
+  //   headline: "FX CHOCOLATE",
+  //   year: "2020-PRESENT",
+  //   client: "FX CHOCOLATE",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "fx_chocolate.png",
+  // },
+  // brami: {
+  //   headline: "BRAMI",
+  //   year: "2020-PRESENT",
+  //   client: "BRAMI",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "brami.png",
+  // },
+  // quicksilver_scientific: {
+  //   headline: "QUICKSILVER SCIENTIFIC",
+  //   year: "2020-PRESENT",
+  //   client: "QUICKSILVER SCIENTIFIC",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "quicksilver_scientific.png",
+  // },
+  // faherty: {
+  //   headline: "FAHERTY",
+  //   year: "2020-PRESENT",
+  //   client: "FAHERTY",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "faherty.png",
+  // },
+  // colgate: {
+  //   headline: "COLGATE",
+  //   year: "2020-PRESENT",
+  //   client: "COLGATE",
+  //   disciplines: [
+  //     "ART DIRECTION",
+  //     "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+  //     "FIELD MARKETING DISPLAY DESIGN",
+  //     "RETAIL DISPLAY DESIGN",
+  //     "PHOTOGRAPHY DIRECTION & STYLING",
+  //     "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+  //   ],
+  //   project_text:
+  //     "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+  //   bottle_image: "colgate.png",
+  // },
 };
 
 let is2k = window.innerWidth > 1920;
@@ -1106,6 +1093,27 @@ function workSectionBottleAnimation() {
       disciplines.appendChild(p);
     });
 
+    if (content.project_text === null) {
+      document.querySelector(".project-heading").style.pointerEvents = "none";
+      document.querySelector(".project-heading").style.opacity = "0";
+      document.querySelector("#work .project-text").style.zIndex = "-1";
+      document.querySelector("#work").classList =
+        `work ${content.right_images}`;
+      document.querySelector("#work > .right").classList =
+        `right ${content.right_images}`;
+      document.querySelector("#work .left > .right.mobile").classList =
+        `right mobile ${content.right_images}`;
+    } else {
+      document.querySelector("#work").classList =
+        `work ${content.right_images}`;
+      document.querySelector("#work > .right").classList =
+        `right ${content.right_images}`;
+      document.querySelector("#work .left > .right.mobile").classList =
+        `right mobile ${content.right_images}`;
+      document.querySelector(".project-heading").style.pointerEvents = "auto";
+      document.querySelector(".project-heading").style.opacity = "1";
+      document.querySelector("#work .project-text").style.zIndex = "1";
+    }
     projectText.innerHTML = content.project_text;
   }
 
@@ -1313,7 +1321,7 @@ function workSectionBottleAnimation() {
     gsap.to(first, {
       top: "unset",
       left: isMobile ? "8px" : "unset",
-      bottom: "9.375vw",
+      bottom: isMobile ? "194px" : "9.375vw",
       right: isTablet
         ? "225px"
         : isMobile
@@ -1427,9 +1435,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("load", createTransformAnimations);
 
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
+// document.addEventListener("contextmenu", function (e) {
+//   e.preventDefault();
+// });
 
 function disableImageDrag(img) {
   img.setAttribute("draggable", "false");
@@ -1449,3 +1457,52 @@ const observer = new MutationObserver((mutations) => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+//
+
+const text = document.getElementById("loaderText");
+
+let progress = 0;
+const duration = 2500; // 2 seconds
+const start = performance.now();
+
+function animate(time) {
+  const elapsed = time - start;
+  const t = Math.min(elapsed / duration, 1);
+
+  setTimeout(() => {
+    text.style.left = "-16px";
+  }, 200);
+
+  progress = Math.floor(t * 100);
+  text.textContent = progress;
+
+  const maxX = window.innerWidth - text.offsetWidth;
+  const maxY = window.innerHeight - text.offsetHeight;
+
+  const x = maxX * t;
+
+  gsap.to(text, {
+    transform: `translateX(${x}px)`,
+    ease: "power4.out",
+  });
+
+  if (t < 1) {
+    requestAnimationFrame(animate);
+  } else {
+    text.textContent = "100";
+  }
+}
+
+requestAnimationFrame(animate);
+
+setTimeout(() => {
+  gsap.to("#loader", {
+    transform: "translateY(-100%)",
+    duration: 1.2,
+    opcaity: 0,
+    pointerEvents: "none",
+    zIndex: -1,
+    ease: "power4.inOut",
+  });
+}, 2500);

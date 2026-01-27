@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -50,9 +50,20 @@
       as="file"
       href="fonts/EditorialNew/EditorialNew-Ultralight.otf"
     />
+    <link
+      rel="preload"
+      as="video"
+      href="/images/earthbar_video.mp4"
+      type="video/mp4"
+    />
+
     <title>Isa De Burgh</title>
   </head>
   <body>
+    <div id="loader">
+      <div id="loaderText">0</div>
+    </div>
+
     <section class="start" id="home">
       <div class="navigation">
         <div class="of-h">
@@ -60,7 +71,7 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1034 156"
             fill="none"
-            onclick="window.scrollTo({ top: 0, behavior: 'smooth', })"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
             class="logo"
           >
             <path d="M24.468 2.4V153.6H0V2.4H24.468Z" fill="black" />
@@ -161,15 +172,23 @@
         </div>
 
         <div class="actions">
-          <div class="action-button button of-h mh-effect">
+          <div
+            class="action-button button of-h mh-effect"
+            onclick="
+              window.open(
+                'https://mail.google.com/mail/?view=cm&fs=1&to=isadeburgh@gmail.com',
+                '_blank',
+              )
+            "
+          >
             <div class="group">
-              <span class="mh-effect">Schedule a call</span>
+              <span class="mh-effect">GET IN TOUCH</span>
               <div class="of-h mh-effect">
                 <span class="icon-font">→→</span>
               </div>
             </div>
             <div class="group">
-              <span class="mh-effect">Schedule a call</span>
+              <span class="mh-effect">GET IN TOUCH</span>
               <div class="of-h mh-effect">
                 <span class="icon-font">→→</span>
               </div>
@@ -251,31 +270,31 @@
             <h2>Magic mind</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/earth_bar.png" alt="bottle" />
             <h2>Earthbar</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/colgate.png" alt="bottle" />
             <h2>colgate</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/little_saints.png" alt="bottle" />
             <h2>Little saints</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/symboime.png" alt="bottle" />
             <h2>symbiome</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/de_soi.png" alt="bottle" />
             <h2>de soi</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/faherty.png" alt="bottle" />
             <h2>faherty</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/wild_elements.png" alt="bottle" />
             <h2>wild elements</h2>
           </div>
         </div>
@@ -285,31 +304,31 @@
             <h2>Magic mind</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/earth_bar.png" alt="bottle" />
             <h2>Earthbar</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/colgate.png" alt="bottle" />
             <h2>colgate</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/little_saints.png" alt="bottle" />
             <h2>Little saints</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/symboime.png" alt="bottle" />
             <h2>symbiome</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/de_soi.png" alt="bottle" />
             <h2>de soi</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/faherty.png" alt="bottle" />
             <h2>faherty</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/wild_elements.png" alt="bottle" />
             <h2>wild elements</h2>
           </div>
         </div>
@@ -317,70 +336,46 @@
       <div class="carousel-wrapper">
         <div class="text-carousel right">
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Magic mind</h2>
+            <img src="./images/palm_and_paws.png" alt="bottle" />
+            <h2>PALM & PAWS</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Earthbar</h2>
+            <img src="./images/sidedish.png" alt="bottle" />
+            <h2>Sidedish</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>colgate</h2>
+            <img src="./images/quicksilver_scientific.png" alt="bottle" />
+            <h2>QUICKSILVER SCIENTIFIC</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Little saints</h2>
+            <img src="./images/brami.png" alt="bottle" />
+            <h2>Brami</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>symbiome</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>de soi</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>faherty</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>wild elements</h2>
+            <img src="./images/fx_chocolate.png" alt="bottle" />
+            <h2>fx chocolate</h2>
           </div>
         </div>
         <div class="text-carousel right">
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Magic mind</h2>
+            <img src="./images/palm_and_paws.png" alt="bottle" />
+            <h2>PALM & PAWS</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Earthbar</h2>
+            <img src="./images/sidedish.png" alt="bottle" />
+            <h2>Sidedish</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>colgate</h2>
+            <img src="./images/quicksilver_scientific.png" alt="bottle" />
+            <h2>QUICKSILVER SCIENTIFIC</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Little saints</h2>
+            <img src="./images/brami.png" alt="bottle" />
+            <h2>Brami</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>symbiome</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>de soi</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>faherty</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>wild elements</h2>
+            <img src="./images/fx_chocolate.png" alt="bottle" />
+            <h2>fx chocolate</h2>
           </div>
         </div>
       </div>
@@ -391,31 +386,31 @@
             <h2>Magic mind</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/earth_bar.png" alt="bottle" />
             <h2>Earthbar</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/colgate.png" alt="bottle" />
             <h2>colgate</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/little_saints.png" alt="bottle" />
             <h2>Little saints</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/symboime.png" alt="bottle" />
             <h2>symbiome</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/de_soi.png" alt="bottle" />
             <h2>de soi</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/faherty.png" alt="bottle" />
             <h2>faherty</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/wild_elements.png" alt="bottle" />
             <h2>wild elements</h2>
           </div>
         </div>
@@ -425,31 +420,31 @@
             <h2>Magic mind</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/earth_bar.png" alt="bottle" />
             <h2>Earthbar</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/colgate.png" alt="bottle" />
             <h2>colgate</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/little_saints.png" alt="bottle" />
             <h2>Little saints</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/symboime.png" alt="bottle" />
             <h2>symbiome</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/de_soi.png" alt="bottle" />
             <h2>de soi</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/faherty.png" alt="bottle" />
             <h2>faherty</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
+            <img src="./images/wild_elements.png" alt="bottle" />
             <h2>wild elements</h2>
           </div>
         </div>
@@ -457,75 +452,51 @@
       <div class="carousel-wrapper mobile">
         <div class="text-carousel right">
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Magic mind</h2>
+            <img src="./images/palm_and_paws.png" alt="bottle" />
+            <h2>PALM & PAWS</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Earthbar</h2>
+            <img src="./images/sidedish.png" alt="bottle" />
+            <h2>Sidedish</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>colgate</h2>
+            <img src="./images/quicksilver_scientific.png" alt="bottle" />
+            <h2>QUICKSILVER SCIENTIFIC</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Little saints</h2>
+            <img src="./images/brami.png" alt="bottle" />
+            <h2>Brami</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>symbiome</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>de soi</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>faherty</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>wild elements</h2>
+            <img src="./images/fx_chocolate.png" alt="bottle" />
+            <h2>fx chocolate</h2>
           </div>
         </div>
         <div class="text-carousel right">
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Magic mind</h2>
+            <img src="./images/palm_and_paws.png" alt="bottle" />
+            <h2>PALM & PAWS</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Earthbar</h2>
+            <img src="./images/sidedish.png" alt="bottle" />
+            <h2>Sidedish</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>colgate</h2>
+            <img src="./images/quicksilver_scientific.png" alt="bottle" />
+            <h2>QUICKSILVER SCIENTIFIC</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>Little saints</h2>
+            <img src="./images/brami.png" alt="bottle" />
+            <h2>Brami</h2>
           </div>
           <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>symbiome</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>de soi</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>faherty</h2>
-          </div>
-          <div class="text-part">
-            <img src="./images/magic_mind_bottle_mini.png" alt="bottle" />
-            <h2>wild elements</h2>
+            <img src="./images/fx_chocolate.png" alt="bottle" />
+            <h2>fx chocolate</h2>
           </div>
         </div>
       </div>
     </section>
-    <section class="work" id="work">
+    <section class="work magic_mind_images" id="work">
       <div class="left">
         <h2>
           MAGIC MIND
@@ -540,7 +511,7 @@
           <p>2020-present</p>
         </div>
         <div class="work-left-content client">
-          <p>Client</p>
+          <p>PROJECT</p>
           <p>magic mind</p>
         </div>
         <div class="work-left-content disciplines end-content">
@@ -566,7 +537,96 @@
           has been rooted in elevating Magic Mind’s mission through consistent,
           cohesive, and emotionally resonant creative.
         </p>
-        <div class="right mobile">
+        <div class="right magic_mind_images mobile">
+          <div class="magic_mind_images">
+            <img src="./images/banner.png" alt="1" class="banner" />
+            <div class="cartoon-box">
+              <img src="./images/OG-Unboxing-GIF-OPT.gif" alt="cartoon-box" />
+            </div>
+            <img
+              src="./images/cartoonish_sea_picture.png"
+              alt="3"
+              class="cartoonish-sea-picture"
+            />
+            <img
+              src="./images/multiple_bottle.png"
+              alt="4"
+              class="multiple-bottle"
+            />
+            <img
+              src="./images/magic_mind_bottle_picture.png"
+              alt="5"
+              class="magic-mind-bottle-picture"
+            />
+          </div>
+          <div class="earthbar_images">
+            <div class="earthbar-with-mac">
+              <img src="./images/earthbar_with_mac.jpg" alt="1" />
+            </div>
+            <img
+              src="./images/earthbar_mobile.gif"
+              alt="3"
+              class="earthbar-mobile"
+            />
+            <div class="earthbar-white">
+              <img src="./images/earthbar_white.jpg" alt="1" />
+            </div>
+            <div class="earthbar-video">
+              <div class="video">
+                <video
+                  src="./images/earthbar_video.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                ></video>
+              </div>
+            </div>
+          </div>
+          <div class="sidedish_images">
+            <img
+              src="./images/sidedish_mobile.gif"
+              alt="1"
+              class="sidedish-mobile"
+            />
+            <img
+              src="./images/sidedish_email.png"
+              alt="3"
+              class="sidedish-email"
+            />
+            <div class="sidedish-recipe">
+              <img src="./images/sidedish_orange_recipe.png" alt="1" />
+            </div>
+            <div class="sidedish-spring-roll">
+              <img src="./images/sidedish_spring_roll.png" alt="1" />
+            </div>
+            <img
+              src="./images/sidedish_hand.gif"
+              class="sidedish-hand"
+              alt="1"
+            />
+          </div>
+          <div class="wild_elements_images">
+            <img
+              src="./images/wild_element_envelope.gif"
+              alt="1"
+              class="wild-elements-envelope"
+            />
+            <div class="wild-elements-player">
+              <img src="./images/wild_elements_player.png" alt="3" />
+            </div>
+            <div class="wild-elements-motivation">
+              <img src="./images/wild_elements_motivation.png" alt="1" />
+            </div>
+            <div class="wild-elements-ingredients">
+              <img src="./images/wild_elements_ingredients.png" alt="1" />
+            </div>
+          </div>
+        </div>
+        <h1 class="work-headline"></h1>
+      </div>
+      <div class="right magic_mind_images">
+        <div class="magic_mind_images">
           <img src="./images/banner.png" alt="1" class="banner" />
           <div class="cartoon-box">
             <img src="./images/OG-Unboxing-GIF-OPT.gif" alt="cartoon-box" />
@@ -587,28 +647,65 @@
             class="magic-mind-bottle-picture"
           />
         </div>
-        <h1 class="work-headline"></h1>
-      </div>
-      <div class="right">
-        <img src="./images/banner.png" alt="1" class="banner" />
-        <div class="cartoon-box">
-          <img src="./images/OG-Unboxing-GIF-OPT.gif" alt="cartoon-box" />
+        <div class="earthbar_images">
+          <div class="earthbar-with-mac">
+            <img src="./images/earthbar_with_mac.jpg" alt="1" />
+          </div>
+          <img
+            src="./images/earthbar_mobile.gif"
+            alt="3"
+            class="earthbar-mobile"
+          />
+          <div class="earthbar-white">
+            <img src="./images/earthbar_white.jpg" alt="1" />
+          </div>
+          <div class="earthbar-video">
+            <div class="video">
+              <video
+                src="./images/earthbar_video.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+            </div>
+          </div>
         </div>
-        <img
-          src="./images/cartoonish_sea_picture.png"
-          alt="3"
-          class="cartoonish-sea-picture"
-        />
-        <img
-          src="./images/multiple_bottle.png"
-          alt="4"
-          class="multiple-bottle"
-        />
-        <img
-          src="./images/magic_mind_bottle_picture.png"
-          alt="5"
-          class="magic-mind-bottle-picture"
-        />
+        <div class="sidedish_images">
+          <img
+            src="./images/sidedish_mobile.gif"
+            alt="1"
+            class="sidedish-mobile"
+          />
+          <img
+            src="./images/sidedish_email.png"
+            alt="3"
+            class="sidedish-email"
+          />
+          <div class="sidedish-recipe">
+            <img src="./images/sidedish_orange_recipe.png" alt="1" />
+          </div>
+          <div class="sidedish-spring-roll">
+            <img src="./images/sidedish_spring_roll.png" alt="1" />
+          </div>
+          <img src="./images/sidedish_hand.gif" class="sidedish-hand" alt="1" />
+        </div>
+        <div class="wild_elements_images">
+          <img
+            src="./images/wild_element_envelope.gif"
+            alt="1"
+            class="wild-elements-envelope"
+          />
+          <div class="wild-elements-player">
+            <img src="./images/wild_elements_player.png" alt="3" />
+          </div>
+          <div class="wild-elements-motivation">
+            <img src="./images/wild_elements_motivation.png" alt="1" />
+          </div>
+          <div class="wild-elements-ingredients">
+            <img src="./images/wild_elements_ingredients.png" alt="1" />
+          </div>
+        </div>
       </div>
       <div class="products">
         <div class="product first">
@@ -622,8 +719,8 @@
         </div>
 
         <div class="product second">
-          <img src="./images/little_saints.png" alt="little_saints_bottle" />
-          <h2>LITTLESAINTS</h2>
+          <img src="./images/earth_bar.png" alt="little_saints_bottle" />
+          <h2>EARTHBAR</h2>
           <p class="mh-effect">
             <span class="mh-effect next-project">NEXT PROJECT</span>
             <span class="icon-font mh-effect">→</span>
@@ -644,18 +741,6 @@
     <section class="about" id="about">
       <div class="photos">
         <div class="photo odd mh-effect">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="81"
-            height="80"
-            viewBox="0 0 81 80"
-            fill="none"
-          >
-            <path
-              d="M27.5379 71.2864C24.2824 76.154 17.316 75.691 11.1716 71.5815C5.0272 67.472 1.93908 61.2104 5.19466 56.3428C8.46803 51.4485 15.4166 51.9381 21.561 56.0476C27.7054 60.1571 30.8113 66.3922 27.5379 71.2864ZM27.2384 69.7772C29.3477 65.8752 26.1953 61.0335 19.8015 57.5272C13.4343 54.0386 7.60341 53.95 5.46757 57.8342C3.35833 61.7362 6.5195 66.6222 12.9133 70.1286C19.2805 73.6172 25.0848 73.6879 27.2384 69.7772ZM32.2365 60.4214L15.6813 47.7236C14.0817 46.4967 13.8413 46.2317 13.4185 48.0448L12.7608 47.9033L13.5928 44.3473L14.0864 44.2822L23.278 51.3322L23.3559 51.2306C22.6995 49.1946 22.5153 47.2789 23.6059 45.857C25.3003 43.648 28.8674 44.0449 32.7269 47.0051C36.9418 50.2379 39.4203 54.8409 37.2002 57.7356C35.8953 59.4368 34.0211 59.935 32.2365 60.4214ZM32.6221 58.499C33.8258 58.4544 35.4215 58.2668 36.259 57.175C38.0312 54.8644 35.252 51.4422 32.2558 49.1441C28.2947 46.106 25.6816 45.6746 24.4547 47.2742C23.3446 48.7216 23.7666 50.5374 24.1413 51.9943L32.6221 58.499ZM41.4662 51.7797L36.6844 47.7211L37.1193 47.2088C39.8111 49.0318 42.4958 49.3798 43.9661 47.6476C44.9393 46.5009 44.5727 45.3504 43.4017 44.3564C41.7183 42.9276 39.6094 43.2364 36.935 43.5687C34.3958 43.8899 32.3942 44.1218 30.7352 42.7137C29.1494 41.3677 28.9272 39.2064 30.2939 37.5962C31.6191 36.0348 33.0091 36.3751 33.3404 35.9848C33.5682 35.7164 33.3243 35.5094 32.8363 35.0952L33.2712 34.5829L37.1747 37.896L36.7398 38.4084C34.6616 37.1481 32.4279 36.7632 31.1855 38.2271C30.1915 39.3981 30.8324 40.5717 31.4667 41.11C32.8086 42.2489 34.7444 42.0452 37.0543 41.6973C40.6649 41.1522 42.3522 41.2411 44.2308 42.8356C46.2801 44.575 46.1415 46.7658 44.8577 48.2784C43.4082 49.9862 41.8732 49.8167 41.4798 50.2802C41.2313 50.573 41.4131 50.8532 41.9011 51.2674L41.4662 51.7797ZM49.3285 32.2075L49.7846 31.714C53.1264 35.5001 53.5005 38.6783 51.8063 40.5113C49.5256 42.9787 45.6086 41.842 41.7078 38.2363C38.0889 34.8913 36.4042 30.6324 38.7718 28.071C40.7918 25.8855 44.3599 26.7869 47.8613 30.0233L42.2138 36.1331L42.7308 36.6109C45.7622 39.4129 49.3046 40.8135 50.9119 39.0745C51.9763 37.9231 51.9813 35.749 49.3285 32.2075ZM39.5056 28.88C38.1155 30.3839 39.3039 32.964 41.4583 35.3476L45.7808 30.6712C43.6423 28.6946 40.9826 27.282 39.5056 28.88ZM48.7817 17.8783C49.5571 17.1151 50.5313 16.9645 51.1823 17.6259C51.6312 18.082 51.7384 18.8296 51.191 19.3683C50.7349 19.8172 50.3276 19.814 49.9214 19.675C49.6057 19.5367 49.4019 19.5577 49.1966 19.7597C48.5124 20.4331 48.6392 21.5656 49.1638 23.8778L56.01 30.8339C57.4017 32.2479 57.9216 32.32 59.9286 30.3447L60.4 30.8236L55.4053 35.7394L54.9339 35.2604C56.2567 33.9586 56.1245 33.5049 54.7328 32.0909L47.303 24.5418C45.9114 23.1278 45.7101 22.832 45.04 24.5691L44.4083 24.3377L45.7028 20.9086L46.2458 20.9129L48.1313 22.8287L48.1997 22.7613C47.7602 21.1286 47.5045 19.1353 48.7817 17.8783ZM60.9455 11.6636C60.0634 9.87361 59.8276 9.61224 58.2357 11.0483L57.7641 10.5256L61.4708 7.18184L61.9423 7.70458C60.9681 8.58339 60.8713 9.14484 61.7534 10.9349L68.3981 24.4634L67.614 25.1708L54.7701 17.1914C53.1015 16.1539 52.5331 16.1926 51.5589 17.0714L51.0874 16.5487L55.3405 12.7119L55.8121 13.2347C54.3389 14.5636 54.6222 14.7821 56.3122 15.8433L65.7738 21.7454L65.8451 21.6811L60.9455 11.6636ZM75.7849 8.43677L76.3076 8.01444C79.0668 12.244 78.9773 15.443 77.0359 17.0116C74.4223 19.1233 70.7109 17.4321 67.3725 13.3003C64.2753 9.4671 63.2242 5.00932 65.9373 2.81721C68.2521 0.946871 71.6523 2.35471 74.6489 6.06341L68.1773 11.2923L68.6198 11.8399C71.2141 15.0508 74.5167 16.9489 76.3587 15.4606C77.5783 14.4752 77.8977 12.3247 75.7849 8.43677ZM66.5464 3.72382C64.9534 5.01093 65.7562 7.73574 67.5433 10.4058L72.4966 6.40369C70.6665 4.13864 68.239 2.35626 66.5464 3.72382Z"
-              fill="black"
-            />
-          </svg>
           <img
             src="./images/observer_image.png"
             alt="observe_image"
@@ -663,18 +748,6 @@
           />
         </div>
         <div class="photo even mh-effect">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="79"
-            height="77"
-            viewBox="0 0 79 77"
-            fill="none"
-          >
-            <path
-              d="M50.7449 66.3825L53.0514 61.8252L53.6558 62.1258C51.7344 65.9427 51.9054 66.5766 53.563 67.6075L57.2587 69.9057L68.5808 51.699C69.6117 50.0414 69.6037 49.5088 67.0221 47.9035L67.377 47.3328L74.714 51.8955L74.3592 52.4661C71.7504 50.8438 71.2693 51.0722 70.2385 52.7298L58.9164 70.9365L62.6392 73.2516C64.2968 74.2824 64.9139 74.1386 67.5146 70.7441L68.0515 71.1533L64.957 75.2205L64.5647 75.7302L50.4613 66.9598L50.7449 66.3825ZM45.1874 63.6162L51.8398 54.2503L51.7615 54.1947C49.8402 54.9103 47.9511 55.1385 46.5423 54.1379C44.6639 52.8037 44.9862 50.9131 46.4686 48.826L52.2686 40.6602C53.4175 39.0427 53.4757 38.5738 51.9365 37.4805L52.3256 36.9327L57.1521 40.3608L56.7629 40.9086C55.2759 39.8524 54.8523 40.0618 53.7035 41.6794L47.9035 49.8452C46.8102 51.3844 46.75 52.5192 47.8196 53.2789C48.9415 54.0757 50.7414 53.8626 52.4698 53.3632L58.3995 45.0148C59.5483 43.3973 59.6066 42.9284 58.1456 41.8907L58.5348 41.3429L63.3351 44.7524L62.946 45.3003C61.4328 44.2255 61.0093 44.435 59.8604 46.0525L48.5941 61.9145C47.4267 63.5581 47.1706 63.8081 49.0166 64.1379L48.8808 64.8265L45.2966 64.1255L45.1874 63.6162ZM35.9335 53.6395C36.59 54.1507 36.7017 55.0488 36.1906 55.7053C35.6991 56.3365 34.7812 56.4735 34.1248 55.9623C33.4936 55.4708 33.3762 54.5277 33.8677 53.8965C34.3789 53.2401 35.3023 53.148 35.9335 53.6395ZM47.4501 36.9749C48.669 35.4096 48.7479 34.9437 47.2835 33.8034L47.6963 33.2732L52.3925 36.9301L51.9796 37.4603C50.5152 36.32 50.0829 36.5106 48.864 38.0759L42.3563 46.433C41.1374 47.9984 40.8706 48.2368 42.6806 48.6729L42.5343 49.3295L38.9648 48.4968L38.8977 47.9579L47.4501 36.9749ZM33.5653 43.5578L35.2346 41.5749L35.1611 41.5131C33.1876 42.0686 31.2861 42.141 29.9642 41.0282C28.2016 39.5443 28.678 37.6866 30.3267 35.7282L36.7774 28.0659C38.0551 26.5482 38.1517 26.0857 36.7074 24.8697L37.1401 24.3556L41.6689 28.1683L41.2362 28.6824C39.8408 27.5077 39.4015 27.6817 38.1238 29.1994L31.6731 36.8617C30.4572 38.306 30.3041 39.4319 31.3077 40.2769C32.3604 41.1631 34.1717 41.0984 35.9353 40.7426L42.5302 32.909C43.8079 31.3913 43.9045 30.9288 42.5336 29.7747L42.9664 29.2606L47.4707 33.0526L47.0379 33.5667C45.6181 32.3714 45.1788 32.5454 43.901 34.0631L37.0795 42.166C35.8017 43.6838 35.5261 43.9118 37.3181 44.4166L37.1469 45.0672L33.6117 44.0989L33.5653 43.5578ZM32.0243 23.7283C33.3803 22.28 33.5011 21.8232 32.1462 20.5548L32.6054 20.0642L36.9504 24.132L36.4912 24.6226C35.1363 23.3541 34.6884 23.5047 33.3325 24.9531L20.0355 39.1561C18.6577 40.6278 18.3704 40.841 20.1552 41.4161L19.9281 42.0801L16.4707 40.9036L16.4309 40.3842L32.0243 23.7283ZM27.3096 18.7444C27.7664 16.805 27.4274 16.137 26.493 15.2622L26.9523 14.7716L31.4374 18.9707L30.9782 19.4613C29.3897 17.9741 29.4016 18.3359 28.9448 20.2754L27.0081 28.1499L20.9637 28.8471C18.9795 29.0935 18.5883 28.9027 20.2235 30.4336L19.7424 30.9475L15.8179 27.2733L16.299 26.7594C17.2568 27.6561 17.9517 28.1313 19.9358 27.8848L25.2581 27.2566L27.3096 18.7444ZM15.5598 12.6444L15.0942 12.1598C19.0716 9.04806 22.2664 8.86282 23.9958 10.6626C26.3238 13.0854 24.9572 16.9282 21.1269 20.6087C17.5734 24.0231 13.2222 25.4527 10.8055 22.9376C8.74354 20.7917 9.85458 17.2833 13.2926 13.9797L19.0573 19.979L19.5649 19.4912C22.5415 16.6311 24.1493 13.1778 22.5086 11.4703C21.4222 10.3397 19.2522 10.2059 15.5598 12.6444ZM11.6566 22.253C13.0755 23.7298 15.7215 22.6962 18.2284 20.6867L13.8162 16.0949C11.7165 18.1126 10.1489 20.684 11.6566 22.253ZM1.25016 12.445C0.52974 11.6297 0.431652 10.6488 1.12707 10.0344C1.60666 9.61058 2.35892 9.54371 2.86746 10.1192C3.29123 10.5988 3.26612 11.0053 3.10549 11.4035C2.95045 11.7113 2.96048 11.9159 3.15118 12.1318C3.78685 12.8512 4.92444 12.7854 7.26153 12.3857L14.5754 5.9231C16.0621 4.60939 16.162 4.09414 14.2973 1.98392L14.8009 1.53895L19.4413 6.79052L18.9377 7.23549C17.7087 5.84466 17.2487 5.95226 15.7619 7.26597L7.82464 14.2795C6.33789 15.5932 6.03174 15.7783 7.73026 16.5407L7.46535 17.1591L4.11067 15.6823L4.14416 15.1403L6.15846 13.3604L6.09489 13.2885C4.44091 13.6397 2.43674 13.7879 1.25016 12.445Z"
-              fill="black"
-            />
-          </svg>
           <img
             src="./images/thinker_image.png"
             alt="thinker_image"
@@ -682,18 +755,6 @@
           />
         </div>
         <div class="photo odd mh-effect">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="79"
-            height="77"
-            viewBox="0 0 79 77"
-            fill="none"
-          >
-            <path
-              d="M8.95364 48.3259L9.51603 48.638L13.9019 51.0175L13.5715 51.6062C9.92407 49.622 9.2824 49.7611 8.17005 51.3651L3.92122 57.4921L12.5726 63.4915L15.3808 59.4419C16.4932 57.8379 16.4936 57.3319 13.7062 55.399L14.1074 54.8205L21.0495 59.6346L20.6483 60.2131C17.8609 58.2802 17.3872 58.4579 16.2749 60.0619L13.4666 64.1115L21.6709 69.8009C22.9068 70.658 23.3157 70.63 24.0269 69.6044L27.601 64.4504C28.7133 62.8464 28.5602 62.0003 25.3393 58.0533L25.88 57.6105L29.6811 62.3493L30.0633 62.809L21.0368 75.8255L20.4846 75.4425C22.2352 72.9181 22.0129 72.4525 20.4089 71.3401L4.42097 60.253C2.81692 59.1407 2.3029 59.0957 0.552306 61.6201L9.32425e-05 61.2372L8.95364 48.3259ZM35.3652 51.4696C37.3285 51.8687 37.9498 51.5423 38.7389 50.5345L39.268 50.9487L35.6581 55.5597L35.129 55.1455C36.352 53.5833 35.9872 53.5821 34.0238 53.183L29.3203 52.183L31.42 56.509C32.2984 58.2939 32.3871 58.6479 33.6101 57.0857L34.1392 57.4999L31.1211 61.355L30.592 60.9408C31.4008 59.9077 31.5488 59.2514 30.6901 57.4412L27.988 51.9121L21.7868 50.593C19.8487 50.2136 19.2274 50.54 18.4383 51.5478L17.884 51.1139L21.4939 46.5028L22.0482 46.9368C20.8252 48.499 21.19 48.5002 23.1282 48.8796L26.8949 49.6746L25.2246 46.2537C24.3659 44.4435 24.2773 44.0896 23.0542 45.6518L22.4999 45.2178L25.518 41.3627L26.0723 41.7967C25.2636 42.8297 25.0958 43.5112 25.9742 45.2962L28.2524 49.9652L35.3652 51.4696ZM31.5441 33.5214C33.6126 31.1644 37.2528 32.7412 40.4516 35.5486C44.396 39.0103 46.7102 43.5532 44.4727 46.1027C43.4384 47.2812 41.9055 47.7666 40.0878 47.3635L40.0456 47.4116L44.3989 51.2321C45.9141 52.5619 46.3505 52.6469 47.5747 51.2519L48.0798 51.6952L44.1537 56.1687L43.6487 55.7254C44.8729 54.3304 44.7532 53.8847 43.2379 52.5549L29.9858 40.9245C28.4946 39.6158 28.2723 39.3355 27.7308 41.1168L27.0838 40.9322L28.1246 37.4177L28.6454 37.4064L31.1227 39.5806L31.2071 39.4844C30.3438 37.0237 30.2565 34.9886 31.5441 33.5214ZM43.5283 45.5293C45.3014 43.509 42.6784 40.1426 39.8404 37.6519C36.4011 34.6334 33.7721 33.2628 32.2523 34.9945C31.0703 36.3414 31.377 38.6116 31.8923 40.256L36.8228 44.5831C39.5165 46.9472 42.1352 47.1167 43.5283 45.5293ZM48.5433 36.1365C49.9801 37.5047 50.4358 37.6293 51.7157 36.2852L52.2024 36.7487L48.0978 41.059L47.6112 40.5956C48.8911 39.2515 48.7443 38.8024 47.3075 37.4342L33.2178 24.0172C31.7578 22.627 31.5471 22.3379 30.9568 24.1178L30.2948 23.885L31.5006 20.4377L32.0203 20.4024L48.5433 36.1365ZM57.8649 32.1721C54.9921 34.9555 50.531 33.7082 47.0574 30.123C43.5614 26.5148 42.4557 22.0166 45.3285 19.2332C48.1783 16.472 52.6394 17.7193 56.1353 21.3275C59.609 24.9127 60.7147 29.411 57.8649 32.1721ZM57.5682 30.9001C59.3198 28.891 58.1036 25.6583 54.4202 22.4545C50.7369 19.2507 47.3539 18.5184 45.6022 20.5274C43.8729 22.5594 45.0668 25.7692 48.7724 28.996C52.4788 32.1775 55.8388 32.9321 57.5682 30.9001ZM56.9378 8.58076C57.7538 7.86108 58.7348 7.76388 59.3486 8.45985C59.772 8.93983 59.8382 9.69215 59.2622 10.2002C58.7822 10.6235 58.3757 10.598 57.9777 10.437C57.6701 10.2817 57.4654 10.2916 57.2494 10.4821C56.5294 11.1171 56.5941 12.2547 56.9917 14.5922L63.4477 21.9119C64.7601 23.3998 65.2752 23.5001 67.3871 21.6374L67.8316 22.1414L62.5759 26.777L62.1314 26.273C63.5233 25.0453 63.4161 24.5852 62.1037 23.0972L55.0974 15.1536C53.7851 13.6656 53.6002 13.3593 52.8363 15.0571L52.2181 14.7917L53.698 11.4383L54.24 11.4723L56.018 13.4882L56.09 13.4247C55.7403 11.7704 55.5939 9.76612 56.9378 8.58076ZM73.5021 8.74714L74.0266 8.32701C76.768 12.5682 76.6651 15.7667 74.7171 17.3272C72.0947 19.4278 68.3904 17.7211 65.0694 13.5752C61.9884 9.72909 60.956 5.26693 63.6783 3.08624C66.0009 1.22565 69.3952 2.64777 72.3761 6.36903L65.8827 11.5707L66.3228 12.1201C68.9036 15.3419 72.1983 17.2538 74.0464 15.7734C75.2702 14.793 75.5986 12.6439 73.5021 8.74714ZM64.2836 3.99541C62.6852 5.27582 63.4765 8.00397 65.2524 10.6815L70.2224 6.70026C68.4018 4.42754 65.9819 2.63498 64.2836 3.99541Z"
-              fill="black"
-            />
-          </svg>
           <img
             src="./images/explore_image.png"
             alt="explore_image"
@@ -701,18 +762,6 @@
           />
         </div>
         <div class="photo even mh-effect">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="68"
-            height="69"
-            viewBox="0 0 68 69"
-            fill="none"
-          >
-            <path
-              d="M59.9969 58.2179C55.7452 64.4207 49.3628 67.2231 44.5326 63.9123C41.814 62.0488 41.6672 59.6593 41.0074 59.207C40.6642 58.9718 40.4237 59.0397 39.6458 60.1747L39.0915 59.7948L43.6708 52.2648L44.2251 52.6448C41.5801 57.4658 41.9804 60.8438 44.9366 62.8701C48.8958 65.5839 54.3567 62.6543 58.2284 57.0058C62.1001 51.3573 62.8266 45.26 58.8938 42.5643C55.5417 40.2666 51.0019 41.9656 47.1104 46.3978L46.5561 46.0179C50.808 41.1731 55.6387 38.9365 59.8619 41.8312C64.6921 45.1421 64.2485 52.0152 59.9969 58.2179ZM35.3912 46.2786C34.5294 45.6145 34.2472 44.6699 34.8136 43.9348C35.2043 43.4279 35.9302 43.2197 36.5386 43.6885C37.0456 44.0791 37.0979 44.483 37.0156 44.9044C36.9217 45.236 36.9703 45.435 37.1984 45.6108C37.9589 46.1968 39.0634 45.9167 41.2825 45.0815L47.2396 37.3504C48.4505 35.7788 48.451 35.254 46.2203 33.5352L46.6305 33.0029L52.1817 37.2803L51.7715 37.8126C50.3014 36.6798 49.87 36.8726 48.6591 38.4442L42.1941 46.8343C40.9832 48.4059 40.7176 48.6457 42.5298 49.0725L42.3869 49.7299L38.8132 48.9153L38.7434 48.3768L40.384 46.2475L40.308 46.1889C38.7505 46.8471 36.8107 47.3723 35.3912 46.2786ZM32.3977 30.0129L31.8845 29.5791C35.5188 26.0726 38.6773 25.558 40.5835 27.1693C43.1496 29.3383 42.1877 33.3018 38.7586 37.3587C35.5773 41.1224 31.3973 42.9942 28.7334 40.7426C26.4606 38.8214 27.2028 35.2169 30.2808 31.5755L36.635 36.9464L37.0894 36.4088C39.7543 33.2561 40.9963 29.6551 39.1879 28.1265C37.9903 27.1143 35.8181 27.2056 32.3977 30.0129ZM29.5091 39.9736C31.0732 41.2957 33.598 39.994 35.8837 37.736L31.0204 33.6252C29.1405 35.8492 27.8472 38.5689 29.5091 39.9736ZM25.3464 17.0903L24.854 16.633C26.2041 15.7907 27.2912 15.1845 28.3698 16.1862C29.4952 17.2315 28.9942 18.3822 27.9272 19.5311L27.5134 19.9765L27.5603 20.0201C28.6122 19.6869 31.2303 18.8431 33.1294 20.607C34.7707 22.1315 34.479 24.0442 32.8893 25.7558C30.1453 28.7101 26.8391 27.4736 23.496 26.4648L21.9384 25.9789L20.8495 27.1512C19.3686 28.7456 18.335 30.1876 20.1404 31.8645C21.172 32.8227 22.45 33.0925 23.1469 32.3422C23.6478 31.8029 23.5289 31.0375 24.0298 30.4982C24.4218 30.0761 25.0114 30.0997 25.5272 30.5788C26.1134 31.1232 25.986 31.9657 25.0931 32.927C23.634 34.4979 21.3142 34.2213 19.3916 32.4355C17.469 30.6498 17.1845 28.4639 19.6018 25.8613L26.6795 18.2412C27.3981 17.4674 27.6997 17.0487 27.2776 16.6567C26.9259 16.3301 26.4351 16.5293 25.3464 17.0903ZM31.5247 21.3003C30.4696 20.3203 29.1782 20.3 26.8165 20.7268L22.6352 25.2286L24.1694 25.6927C26.9849 26.5172 29.4823 26.6967 31.268 24.7741C32.4876 23.4611 32.5329 22.2367 31.5247 21.3003ZM16.0939 14.7324L15.6214 14.2546C19.1934 10.7672 21.5097 9.28673 23.4223 11.2208C24.9523 12.768 24.7152 14.7127 21.7117 17.6828L14.2258 25.0855L16.0933 26.974L15.3197 27.739C13.3619 25.8047 11.9575 26.0684 9.5009 28.3627L8.96089 27.8166L12.2146 24.599L9.49206 21.8459L10.2657 21.0809L12.9883 23.834L19.6323 17.2638C22.0214 14.9013 23.4331 13.3252 22.0831 11.96C21.0031 10.8678 19.4611 11.4476 16.0939 14.7324ZM8.30078 5.79249L7.8514 5.29285C11.9292 2.31387 15.1284 2.23405 16.7975 4.08985C19.0444 6.58806 17.5518 10.3837 13.6023 13.936C9.93823 17.2314 5.54227 18.5168 3.20977 15.9234C1.21965 13.7107 2.44573 10.2408 5.9908 7.05236L11.5546 13.2384L12.078 12.7676C15.1472 10.0071 16.868 6.60875 15.2845 4.84811C14.2359 3.68229 12.0715 3.47702 8.30078 5.79249ZM4.08291 15.2672C5.45245 16.7899 8.131 15.8442 10.7028 13.9184L6.44441 9.18369C4.2793 11.131 2.62777 13.6493 4.08291 15.2672Z"
-              fill="black"
-            />
-          </svg>
           <img
             src="./images/create_image.png"
             alt="create_image"
@@ -788,22 +837,22 @@
               class="abt-img-10 mh-effect"
             />
             <img
-              src="./images/work-text-1.svg"
+              src="./images/work-text-2.svg"
               alt="work"
               class="work-text-1"
             />
             <img
-              src="./images/work-text-2.svg"
+              src="./images/work-text-4.svg"
               alt="work"
               class="work-text-2"
             />
             <img
-              src="./images/work-text-3.svg"
+              src="./images/work-text-1.svg"
               alt="work"
               class="work-text-3"
             />
             <img
-              src="./images/work-text-4.svg"
+              src="./images/work-text-3.svg"
               alt="work"
               class="work-text-4"
             />
@@ -962,13 +1011,14 @@
         <h2>
           <span id="textToCopy">isadeburgh@gmail.com</span>
           <div id="copyBtn" class="mh-effect">
-            <p>Copy</p>
+            <p class="mh-effect">Copy</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
               height="25"
               viewBox="0 0 25 25"
               fill="none"
+              class="mh-effect"
             >
               <path
                 d="M17.8532 10.6437C18.6163 7.7868 18.9695 6.2957 18.4095 5.05989C18.3014 4.82123 18.1701 4.59378 18.0174 4.3808C17.1838 3.21744 15.5961 2.79201 12.4206 1.94114C9.24513 1.09028 7.6574 0.664848 6.35375 1.25552C6.11509 1.36366 5.88764 1.49498 5.67466 1.64759C4.5113 2.48125 4.08587 4.06898 3.235 7.24444C2.38414 10.4199 1.95871 12.0076 2.54938 13.3113C2.65752 13.5499 2.78884 13.7774 2.94145 13.9904C3.73173 15.0932 5.19965 15.5329 8.05537 16.3005"
@@ -982,83 +1032,90 @@
                 fill="black"
               />
             </svg>
-            <span class="liquid-bg"></span>
+            <span class="liquid-bg mh-effect"></span>
           </div>
         </h2>
 
         <div class="social-ctas">
-          <div class="social-div mh-effect">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="80"
-              height="84"
-              viewBox="0 0 80 84"
-              fill="none"
-              class="icon-stroke"
-            >
-              <path
-                d="M4.53267 10.8644C6.1968 7.60267 7.1305 6.61428 10.2312 5.2362C11.4265 4.70496 12.9016 4.64735 14.0302 4.14574C14.9694 3.72831 17.8332 3.89454 18.4624 3.10805C18.7858 2.70376 21.252 2.80851 21.8041 2.65076C22.3534 2.49381 23.1322 2.63317 23.7036 2.63317C25.2387 2.63317 26.7034 2.31658 28.2589 2.31658C31.43 2.31658 34.5643 2 37.774 2C43.8201 2 49.64 3.58292 55.661 3.58292C58.0838 3.58292 60.7618 4.84926 63.2591 4.84926C65.3723 4.84926 66.8249 7.89896 68.7993 8.0151C69.9953 8.08546 72.1619 11.8051 72.2817 12.7639C72.3922 13.6481 73.4375 14.4123 73.5481 15.2965C73.5947 15.6695 74.4291 18.2808 74.6561 18.4624C75.5111 19.1464 75.9108 22.1445 76.0631 23.2111C76.2514 24.5293 76.0807 25.9949 76.0807 27.3267C76.0807 29.0621 76.0807 30.7974 76.0807 32.5328C76.0807 33.7589 76.7139 35.1377 76.7139 36.5077C76.7139 37.8796 76.7139 39.2514 76.7139 40.6233C76.7139 42.2898 77.3471 43.7648 77.3471 45.3721C77.3471 48.063 77.3471 50.754 77.3471 53.445C77.3471 55.9768 77.5532 58.6115 77.0129 61.043C76.4577 63.5412 76.0885 67.2858 74.4275 69.3621C73.1463 70.9636 72.4473 73.0754 70.945 74.4275C69.7371 75.5146 68.4005 76.5263 66.8998 77.2767C65.5122 77.9705 63.9416 77.928 62.6435 78.7541C59.6474 80.6607 55.6272 80.4774 52.3193 81.3044C49.0505 82.1216 44.623 81.4627 41.2565 81.4627C33.2837 81.4627 24.5604 82.8706 16.7212 81.1285C14.6526 80.6688 13.1059 77.9802 11.0227 77.9802C8.7657 77.9802 6.98641 73.7496 5.72866 72.3521C4.91528 71.4483 4.855 69.6198 4.28644 68.4827C3.831 67.5718 3.32224 65.634 3.26634 64.6837C3.0951 61.7726 2.31658 59.0254 2.31658 55.96C2.31658 49.5425 2 43.2478 2 36.8243C2 30.994 2.31658 25.3729 2.31658 19.5704C2.31658 17.3696 3.3057 14.8458 4.37438 12.9222C5.51843 10.8629 6.64646 8.96486 9.28144 8.96486"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M23.9517 33.2852C23.9517 35.16 24.1718 39.6104 24.6172 41.3418C25.2716 43.8859 25.1727 47.29 25.3411 49.7887C25.6197 51.8504 25.7298 53.2983 25.8966 54.6244C25.9533 55.6202 25.9533 57.2716 25.9533 58.973"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M36.6079 32.2812C36.6079 33.7158 36.8281 36.6115 37.2184 38.7733C38.219 44.3151 37.9423 46.1727 38.2743 47.6222C38.7196 49.1785 38.9432 52.9383 38.9982 57.1067C39.0533 58.633 39.1633 58.9632 39.2768 59.9707"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M37.9429 40.623C38.3866 39.739 38.8303 37.9608 39.9395 36.5697C41.2035 34.9845 42.2731 33.8441 43.6092 33.0084C44.8193 32.2515 46.4966 32.2828 47.9461 31.9509C48.63 31.7943 49.3923 31.6156 50.1696 31.7807C50.8989 31.9357 51.394 32.8366 52.1162 33.3353C53.5343 34.3146 53.3956 36.9467 53.9544 38.6147C54.2897 40.3962 54.3998 41.7306 54.5666 45.1501C54.6233 48.1292 54.6233 53.6337 54.6233 59.3051"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M23.6177 25.2812V26.785"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-            </svg>
-            <p class="mh-effect">LINKEDIN</p>
-          </div>
-          <div class="social-div mh-effect">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="80"
-              height="84"
-              viewBox="0 0 80 84"
-              fill="none"
-              class="icon-stroke"
-            >
-              <path
-                d="M4.53267 10.8644C6.1968 7.60267 7.1305 6.61428 10.2312 5.2362C11.4265 4.70496 12.9016 4.64735 14.0302 4.14574C14.9694 3.72831 17.8332 3.89454 18.4624 3.10805C18.7858 2.70376 21.252 2.80851 21.8041 2.65076C22.3534 2.49381 23.1322 2.63317 23.7036 2.63317C25.2387 2.63317 26.7034 2.31658 28.2589 2.31658C31.43 2.31658 34.5643 2 37.774 2C43.8201 2 49.64 3.58292 55.661 3.58292C58.0838 3.58292 60.7618 4.84926 63.2591 4.84926C65.3723 4.84926 66.8249 7.89896 68.7993 8.0151C69.9953 8.08546 72.1619 11.8051 72.2817 12.7639C72.3922 13.6481 73.4375 14.4123 73.5481 15.2965C73.5947 15.6695 74.4291 18.2808 74.6561 18.4624C75.5111 19.1464 75.9108 22.1445 76.0631 23.2111C76.2514 24.5293 76.0807 25.9949 76.0807 27.3267C76.0807 29.0621 76.0807 30.7974 76.0807 32.5328C76.0807 33.7589 76.7139 35.1377 76.7139 36.5077C76.7139 37.8796 76.7139 39.2514 76.7139 40.6233C76.7139 42.2898 77.3471 43.7648 77.3471 45.3721C77.3471 48.063 77.3471 50.754 77.3471 53.445C77.3471 55.9768 77.5532 58.6115 77.0129 61.043C76.4577 63.5412 76.0885 67.2858 74.4275 69.3621C73.1463 70.9636 72.4473 73.0754 70.945 74.4275C69.7371 75.5146 68.4005 76.5263 66.8998 77.2767C65.5122 77.9705 63.9416 77.928 62.6435 78.7541C59.6474 80.6607 55.6272 80.4774 52.3193 81.3044C49.0505 82.1216 44.623 81.4627 41.2565 81.4627C33.2837 81.4627 24.5604 82.8706 16.7212 81.1285C14.6526 80.6688 13.1059 77.9802 11.0227 77.9802C8.7657 77.9802 6.98641 73.7496 5.72866 72.3521C4.91528 71.4483 4.855 69.6198 4.28644 68.4827C3.831 67.5718 3.32224 65.634 3.26634 64.6837C3.0951 61.7726 2.31658 59.0254 2.31658 55.96C2.31658 49.5425 2 43.2478 2 36.8243C2 30.994 2.31658 25.3729 2.31658 19.5704C2.31658 17.3696 3.3057 14.8458 4.37438 12.9222C5.51843 10.8629 6.64646 8.96486 9.28144 8.96486"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M54.8496 31.644C49.7688 28.1656 44.8068 23.7017 38.3749 23.8513C36.0645 23.905 34.456 25.5165 32.4192 25.9692C30.6549 26.3612 29.1517 27.8431 27.6804 28.7422C26.0781 29.7214 25.0625 31.5062 24.5212 33.13C23.9615 34.8093 23.1727 36.1525 22.4619 37.7518C21.8358 39.1606 21.6667 42.1241 21.9821 43.5437C22.3613 45.2499 22.7506 47.1487 23.6788 48.657C24.1945 49.4951 24.9349 50.212 25.4105 51.0205C25.9785 51.9861 27.226 52.4617 27.9963 53.232C29.0826 54.3182 30.022 55.0126 31.3662 55.7593C33.3938 56.8858 35.7364 57.15 37.9537 57.807C42.8415 59.2552 46.13 54.4789 48.9056 51.3949C50.0795 50.0906 51.4794 48.5478 51.8893 46.7029C52.1704 45.438 52.8568 44.1667 52.9541 42.8534C52.9893 42.3776 53.2609 41.8998 53.3636 41.4376C53.5148 40.7572 53.3803 40.0379 53.5391 39.3431C53.834 38.0531 53.7966 36.4447 53.7966 35.1192C53.7966 33.9746 53.8416 32.7783 53.27 31.7493C52.74 30.7953 52.1 30.3524 51.4798 29.4911C50.8995 28.6852 49.8162 28.9834 48.9524 28.6954"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M56.5349 20.0601C56.5349 18.6335 56.3723 17.6963 57.272 16.5966C57.9653 15.7494 58.8916 15.3032 59.8345 14.783C60.7212 14.2938 62.2203 13.379 63.2745 13.3204C64.6453 13.2443 66.2816 13.4101 67.1709 14.5958C68.1219 15.8638 67.908 17.345 67.908 18.8783C67.908 20.5471 67.6665 22.2477 65.8487 22.9618C63.9369 23.7129 62.046 23.9447 59.9164 23.5352C58.1114 23.1881 58.3182 22.8001 57.5412 21.3237C57.0105 20.3154 56.9561 19.3405 56.9561 18.1645"
-                stroke="black"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-            </svg>
-            <p class="mh-effect">INSTAGRAM</p>
-          </div>
+          <a
+            href="https://www.linkedin.com/in/isabelle-de-burgh/"
+            target="_blank"
+          >
+            <div class="social-div mh-effect">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="84"
+                viewBox="0 0 80 84"
+                fill="none"
+                class="icon-stroke mh-effect"
+              >
+                <path
+                  d="M4.53267 10.8644C6.1968 7.60267 7.1305 6.61428 10.2312 5.2362C11.4265 4.70496 12.9016 4.64735 14.0302 4.14574C14.9694 3.72831 17.8332 3.89454 18.4624 3.10805C18.7858 2.70376 21.252 2.80851 21.8041 2.65076C22.3534 2.49381 23.1322 2.63317 23.7036 2.63317C25.2387 2.63317 26.7034 2.31658 28.2589 2.31658C31.43 2.31658 34.5643 2 37.774 2C43.8201 2 49.64 3.58292 55.661 3.58292C58.0838 3.58292 60.7618 4.84926 63.2591 4.84926C65.3723 4.84926 66.8249 7.89896 68.7993 8.0151C69.9953 8.08546 72.1619 11.8051 72.2817 12.7639C72.3922 13.6481 73.4375 14.4123 73.5481 15.2965C73.5947 15.6695 74.4291 18.2808 74.6561 18.4624C75.5111 19.1464 75.9108 22.1445 76.0631 23.2111C76.2514 24.5293 76.0807 25.9949 76.0807 27.3267C76.0807 29.0621 76.0807 30.7974 76.0807 32.5328C76.0807 33.7589 76.7139 35.1377 76.7139 36.5077C76.7139 37.8796 76.7139 39.2514 76.7139 40.6233C76.7139 42.2898 77.3471 43.7648 77.3471 45.3721C77.3471 48.063 77.3471 50.754 77.3471 53.445C77.3471 55.9768 77.5532 58.6115 77.0129 61.043C76.4577 63.5412 76.0885 67.2858 74.4275 69.3621C73.1463 70.9636 72.4473 73.0754 70.945 74.4275C69.7371 75.5146 68.4005 76.5263 66.8998 77.2767C65.5122 77.9705 63.9416 77.928 62.6435 78.7541C59.6474 80.6607 55.6272 80.4774 52.3193 81.3044C49.0505 82.1216 44.623 81.4627 41.2565 81.4627C33.2837 81.4627 24.5604 82.8706 16.7212 81.1285C14.6526 80.6688 13.1059 77.9802 11.0227 77.9802C8.7657 77.9802 6.98641 73.7496 5.72866 72.3521C4.91528 71.4483 4.855 69.6198 4.28644 68.4827C3.831 67.5718 3.32224 65.634 3.26634 64.6837C3.0951 61.7726 2.31658 59.0254 2.31658 55.96C2.31658 49.5425 2 43.2478 2 36.8243C2 30.994 2.31658 25.3729 2.31658 19.5704C2.31658 17.3696 3.3057 14.8458 4.37438 12.9222C5.51843 10.8629 6.64646 8.96486 9.28144 8.96486"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M23.9517 33.2852C23.9517 35.16 24.1718 39.6104 24.6172 41.3418C25.2716 43.8859 25.1727 47.29 25.3411 49.7887C25.6197 51.8504 25.7298 53.2983 25.8966 54.6244C25.9533 55.6202 25.9533 57.2716 25.9533 58.973"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M36.6079 32.2812C36.6079 33.7158 36.8281 36.6115 37.2184 38.7733C38.219 44.3151 37.9423 46.1727 38.2743 47.6222C38.7196 49.1785 38.9432 52.9383 38.9982 57.1067C39.0533 58.633 39.1633 58.9632 39.2768 59.9707"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M37.9429 40.623C38.3866 39.739 38.8303 37.9608 39.9395 36.5697C41.2035 34.9845 42.2731 33.8441 43.6092 33.0084C44.8193 32.2515 46.4966 32.2828 47.9461 31.9509C48.63 31.7943 49.3923 31.6156 50.1696 31.7807C50.8989 31.9357 51.394 32.8366 52.1162 33.3353C53.5343 34.3146 53.3956 36.9467 53.9544 38.6147C54.2897 40.3962 54.3998 41.7306 54.5666 45.1501C54.6233 48.1292 54.6233 53.6337 54.6233 59.3051"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M23.6177 25.2812V26.785"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <p class="mh-effect">LINKEDIN</p>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/isadeburgh" target="_blank">
+            <div class="social-div mh-effect">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="84"
+                viewBox="0 0 80 84"
+                fill="none"
+                class="icon-stroke mh-effect"
+              >
+                <path
+                  d="M4.53267 10.8644C6.1968 7.60267 7.1305 6.61428 10.2312 5.2362C11.4265 4.70496 12.9016 4.64735 14.0302 4.14574C14.9694 3.72831 17.8332 3.89454 18.4624 3.10805C18.7858 2.70376 21.252 2.80851 21.8041 2.65076C22.3534 2.49381 23.1322 2.63317 23.7036 2.63317C25.2387 2.63317 26.7034 2.31658 28.2589 2.31658C31.43 2.31658 34.5643 2 37.774 2C43.8201 2 49.64 3.58292 55.661 3.58292C58.0838 3.58292 60.7618 4.84926 63.2591 4.84926C65.3723 4.84926 66.8249 7.89896 68.7993 8.0151C69.9953 8.08546 72.1619 11.8051 72.2817 12.7639C72.3922 13.6481 73.4375 14.4123 73.5481 15.2965C73.5947 15.6695 74.4291 18.2808 74.6561 18.4624C75.5111 19.1464 75.9108 22.1445 76.0631 23.2111C76.2514 24.5293 76.0807 25.9949 76.0807 27.3267C76.0807 29.0621 76.0807 30.7974 76.0807 32.5328C76.0807 33.7589 76.7139 35.1377 76.7139 36.5077C76.7139 37.8796 76.7139 39.2514 76.7139 40.6233C76.7139 42.2898 77.3471 43.7648 77.3471 45.3721C77.3471 48.063 77.3471 50.754 77.3471 53.445C77.3471 55.9768 77.5532 58.6115 77.0129 61.043C76.4577 63.5412 76.0885 67.2858 74.4275 69.3621C73.1463 70.9636 72.4473 73.0754 70.945 74.4275C69.7371 75.5146 68.4005 76.5263 66.8998 77.2767C65.5122 77.9705 63.9416 77.928 62.6435 78.7541C59.6474 80.6607 55.6272 80.4774 52.3193 81.3044C49.0505 82.1216 44.623 81.4627 41.2565 81.4627C33.2837 81.4627 24.5604 82.8706 16.7212 81.1285C14.6526 80.6688 13.1059 77.9802 11.0227 77.9802C8.7657 77.9802 6.98641 73.7496 5.72866 72.3521C4.91528 71.4483 4.855 69.6198 4.28644 68.4827C3.831 67.5718 3.32224 65.634 3.26634 64.6837C3.0951 61.7726 2.31658 59.0254 2.31658 55.96C2.31658 49.5425 2 43.2478 2 36.8243C2 30.994 2.31658 25.3729 2.31658 19.5704C2.31658 17.3696 3.3057 14.8458 4.37438 12.9222C5.51843 10.8629 6.64646 8.96486 9.28144 8.96486"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M54.8496 31.644C49.7688 28.1656 44.8068 23.7017 38.3749 23.8513C36.0645 23.905 34.456 25.5165 32.4192 25.9692C30.6549 26.3612 29.1517 27.8431 27.6804 28.7422C26.0781 29.7214 25.0625 31.5062 24.5212 33.13C23.9615 34.8093 23.1727 36.1525 22.4619 37.7518C21.8358 39.1606 21.6667 42.1241 21.9821 43.5437C22.3613 45.2499 22.7506 47.1487 23.6788 48.657C24.1945 49.4951 24.9349 50.212 25.4105 51.0205C25.9785 51.9861 27.226 52.4617 27.9963 53.232C29.0826 54.3182 30.022 55.0126 31.3662 55.7593C33.3938 56.8858 35.7364 57.15 37.9537 57.807C42.8415 59.2552 46.13 54.4789 48.9056 51.3949C50.0795 50.0906 51.4794 48.5478 51.8893 46.7029C52.1704 45.438 52.8568 44.1667 52.9541 42.8534C52.9893 42.3776 53.2609 41.8998 53.3636 41.4376C53.5148 40.7572 53.3803 40.0379 53.5391 39.3431C53.834 38.0531 53.7966 36.4447 53.7966 35.1192C53.7966 33.9746 53.8416 32.7783 53.27 31.7493C52.74 30.7953 52.1 30.3524 51.4798 29.4911C50.8995 28.6852 49.8162 28.9834 48.9524 28.6954"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M56.5349 20.0601C56.5349 18.6335 56.3723 17.6963 57.272 16.5966C57.9653 15.7494 58.8916 15.3032 59.8345 14.783C60.7212 14.2938 62.2203 13.379 63.2745 13.3204C64.6453 13.2443 66.2816 13.4101 67.1709 14.5958C68.1219 15.8638 67.908 17.345 67.908 18.8783C67.908 20.5471 67.6665 22.2477 65.8487 22.9618C63.9369 23.7129 62.046 23.9447 59.9164 23.5352C58.1114 23.1881 58.3182 22.8001 57.5412 21.3237C57.0105 20.3154 56.9561 19.3405 56.9561 18.1645"
+                  stroke="black"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <p class="mh-effect">INSTAGRAM</p>
+            </div>
+          </a>
         </div>
       </div>
 
