@@ -1499,48 +1499,93 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 const text = document.getElementById("loaderText");
 
-let progress = 0;
-const duration = 2500; // 2 seconds
-const start = performance.now();
+let targetProgress = 0;
+let displayedProgress = 0;
 
-function animate(time) {
-  const elapsed = time - start;
-  const t = Math.min(elapsed / duration, 1);
+let loadedBytes = 0;
+let totalBytes = 0;
 
-  setTimeout(() => {
-    text.style.left = "-16px";
-  }, 200);
+const MIN_DURATION = 1500; // 1.5s minimum loader time
+const startTime = performance.now();
 
-  progress = Math.floor(t * 100);
-  text.textContent = progress;
+const assets = [
+  "/assets/hero.mp4",
+  "/assets/hero.jpg",
+  "/assets/bg.webp",
+  "/fonts/Inter.woff2",
+];
+
+// ---------- ASSET LOADER ----------
+function loadAsset(url) {
+  return fetch(url).then((res) => {
+    const length = res.headers.get("content-length");
+    if (!length) return res.blob();
+
+    totalBytes += parseInt(length, 10);
+    const reader = res.body.getReader();
+
+    return reader.read().then(function process({ done, value }) {
+      if (done) return;
+
+      loadedBytes += value.length;
+
+      targetProgress = Math.floor((loadedBytes / totalBytes) * 100);
+
+      return reader.read().then(process);
+    });
+  });
+}
+
+// ---------- ANIMATION LOOP (SMOOTH) ----------
+function animate() {
+  const elapsed = performance.now() - startTime;
+
+  // If assets load instantly, fake smooth ramp
+  if (totalBytes === 0 && elapsed < MIN_DURATION) {
+    targetProgress = Math.min((elapsed / MIN_DURATION) * 90, 90);
+  }
+
+  // Ease displayed value toward target
+  displayedProgress += (targetProgress - displayedProgress) * 0.08;
+
+  const value = Math.floor(displayedProgress);
+  text.textContent = value;
 
   const maxX = window.innerWidth - text.offsetWidth;
-
-  const x = maxX * t;
+  const x = maxX * (displayedProgress / 101);
 
   gsap.to(text, {
     transform: `translateX(${x}px)`,
     ease: "power4.out",
+    overwrite: true,
   });
 
-  if (t < 1) {
-    requestAnimationFrame(animate);
-  } else {
-    text.textContent = "100";
-  }
+  requestAnimationFrame(animate);
 }
 
+// ---------- INIT ----------
 window.addEventListener("load", () => {
-  requestAnimationFrame(animate);
-
   setTimeout(() => {
-    gsap.to("#loader", {
-      transform: "translateY(-100%)",
-      duration: 1.2,
-      opcaity: 0,
-      pointerEvents: "none",
-      zIndex: -1,
-      ease: "power4.inOut",
-    });
-  }, 2500);
+    text.style.left = "-16px";
+  }, 200);
+
+  Promise.all(assets.map(loadAsset)).then(() => {
+    const elapsed = performance.now() - startTime;
+    const remaining = Math.max(0, MIN_DURATION - elapsed);
+
+    targetProgress = 101;
+
+    setTimeout(() => {
+      gsap.to("#loader", {
+        transform: "translateY(-100%)",
+        duration: 1.2,
+        opacity: 0,
+        pointerEvents: "none",
+        zIndex: -1,
+        ease: "power4.inOut",
+      });
+    }, remaining + 200);
+  });
+
+  requestAnimationFrame(animate);
 });
