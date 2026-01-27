@@ -54,6 +54,7 @@ body::-webkit-scrollbar {
 html,
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #loader {
@@ -62,6 +63,8 @@ body {
   background: #fdfbf7;
   z-index: 9999999999;
   padding: 16px;
+  width: 100vw;
+  height: 101vh;
 }
 
 #loaderText {
@@ -622,7 +625,7 @@ section.work .left .project-text {
   max-width: 460px;
   margin-top: 32px;
   margin-left: 159px;
-  margin-bottom: 200px;
+  margin-bottom: 618px;
 }
 
 section.work h2 p:hover span.liquid-bg {
@@ -981,7 +984,7 @@ section.work .right .multiple-bottle {
 section.work .products {
   position: absolute;
   width: 74.427vw;
-  height: 92.4vw;
+  height: 91vw;
   bottom: 16px;
   right: 16px;
 }
@@ -4505,6 +4508,12 @@ section.about .row .about-images img:nth-child(10) {
   section.work .right.mobile {
     display: block;
     margin-top: 0;
+    margin-bottom: 736px;
+  }
+
+  section.work.magic_mind_images .right.mobile {
+    display: block;
+    margin-top: 0;
     margin-bottom: 820px;
   }
 
@@ -4663,7 +4672,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work.magic_mind_images .left .end-content {
-    margin-bottom: 446px;
+    margin-bottom: 320px;
   }
 
   section.work .left .project-heading {
@@ -4685,7 +4694,7 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: capitalize;
   }
 
-  section.work .left .project-text {
+  section.work.magic_mind_images .left .project-text {
     color: #000;
     font-family: EditorialNewUltralight;
     font-size: 16px;
@@ -4698,6 +4707,21 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 280px;
     height: 206px;
     margin-bottom: 228px;
+  }
+
+  section.work .left .project-text {
+    color: #000;
+    font-family: EditorialNewUltralight;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: -0.32px;
+    margin-top: 16px;
+    margin-left: auto;
+    max-width: 280px;
+    height: 92px;
+    margin-bottom: 342px;
   }
 
   section.work .work-headline {
@@ -4958,8 +4982,8 @@ section.about .row .about-images img:nth-child(10) {
     z-index: 4;
   }
 
-  section.work .right.mobile:has(.sidedish-recipe) {
-    margin-bottom: 743px;
+  section.work.magic_mind_images .right.mobile:has(.sidedish-recipe) {
+    margin-bottom: 855px;
   }
 
   section.about .photos {

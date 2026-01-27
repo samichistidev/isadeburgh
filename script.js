@@ -1499,60 +1499,34 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 const text = document.getElementById("loaderText");
 
-let targetProgress = 0;
 let displayedProgress = 0;
+let targetProgress = 0;
 
-let loadedBytes = 0;
-let totalBytes = 0;
-
-const MIN_DURATION = 1500; // 1.5s minimum loader time
+const MIN_DURATION = 3500; // 3.5 seconds
 const startTime = performance.now();
 
-const assets = [
-  "/assets/hero.mp4",
-  "/assets/hero.jpg",
-  "/assets/bg.webp",
-  "/fonts/Inter.woff2",
-];
+let loadingDone = false;
 
-// ---------- ASSET LOADER ----------
-function loadAsset(url) {
-  return fetch(url).then((res) => {
-    const length = res.headers.get("content-length");
-    if (!length) return res.blob();
+// ---------------- RANDOM PROGRESS DRIVER ----------------
+function randomProgressLoop() {
+  if (loadingDone) return;
 
-    totalBytes += parseInt(length, 10);
-    const reader = res.body.getReader();
+  const increment = Math.floor(Math.random() * 12) + 4; // 4–15%
+  targetProgress = Math.min(targetProgress + increment, 88);
 
-    return reader.read().then(function process({ done, value }) {
-      if (done) return;
-
-      loadedBytes += value.length;
-
-      targetProgress = Math.floor((loadedBytes / totalBytes) * 100);
-
-      return reader.read().then(process);
-    });
-  });
+  const delay = Math.random() * 600 + 400; // 400–1000ms
+  setTimeout(randomProgressLoop, delay);
 }
 
-// ---------- ANIMATION LOOP (SMOOTH) ----------
+// ---------------- ANIMATION (UNCHANGED FEEL) ----------------
 function animate() {
-  const elapsed = performance.now() - startTime;
-
-  // If assets load instantly, fake smooth ramp
-  if (totalBytes === 0 && elapsed < MIN_DURATION) {
-    targetProgress = Math.min((elapsed / MIN_DURATION) * 90, 90);
-  }
-
-  // Ease displayed value toward target
-  displayedProgress += (targetProgress - displayedProgress) * 0.08;
+  displayedProgress += (targetProgress - displayedProgress) * 0.06;
 
   const value = Math.floor(displayedProgress);
   text.textContent = value;
 
   const maxX = window.innerWidth - text.offsetWidth;
-  const x = maxX * (displayedProgress / 101);
+  const x = maxX * (displayedProgress / 100);
 
   gsap.to(text, {
     transform: `translateX(${x}px)`,
@@ -1563,29 +1537,35 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// ---------- INIT ----------
+// ---------------- INIT ----------------
 window.addEventListener("load", () => {
   setTimeout(() => {
     text.style.left = "-16px";
   }, 200);
 
-  Promise.all(assets.map(loadAsset)).then(() => {
+  // Start fake-real progress
+  randomProgressLoop();
+  requestAnimationFrame(animate);
+
+  // Simulate asset completion (replace with real Promise if needed)
+  setTimeout(() => {
+    loadingDone = true;
+    targetProgress = 100;
+
+    document.body.style.overflowY = "unset";
+    document.querySelector("html").style.overflowY = "unset";
+
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_DURATION - elapsed);
-
-    targetProgress = 101;
 
     setTimeout(() => {
       gsap.to("#loader", {
         transform: "translateY(-100%)",
         duration: 1.2,
-        opacity: 0,
         pointerEvents: "none",
         zIndex: -1,
         ease: "power4.inOut",
       });
-    }, remaining + 200);
-  });
-
-  requestAnimationFrame(animate);
+    }, remaining);
+  }, 2000); // assets finish anytime (cached or not)
 });
