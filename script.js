@@ -209,30 +209,18 @@ function createTransformAnimations() {
     },
     ease: "power4.out",
   });
-}
 
-const list = document.querySelector(".list-of-year");
-const wrapper = document.querySelector(".list-of-year-wrapper");
-
-function initYearScroll() {
-  const scrollWidth = list.scrollWidth - wrapper.clientWidth;
-
-  gsap.to(list, {
-    x: -scrollWidth,
-    ease: "none",
+  gsap.to(".list-of-year", {
+    xPercent: -100,
     scrollTrigger: {
-      trigger: wrapper,
-      start: "top top",
-      end: () => `+=${scrollWidth}`,
-      scrub: 1,
+      trigger: ".list-of-year-wrapper",
+      scroller: "body",
+      start: "bottom bottom",
       pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
+      scrub: 1,
     },
   });
 }
-
-initYearScroll();
 
 function initCarouselScrollAnimation() {
   let lastScrollPos = window.pageYOffset;

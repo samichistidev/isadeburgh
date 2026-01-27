@@ -53,7 +53,6 @@ body::-webkit-scrollbar {
 
 html,
 body {
-  overscroll-behavior: none;
   overflow-x: hidden;
 }
 
@@ -4452,7 +4451,7 @@ section.about .row .about-images img:nth-child(10) {
   .carousel-wrapper .text-carousel img {
     margin-right: 8px;
     margin-left: 16px;
-    width: 13px;
+    width: auto;
     height: 40px;
   }
 
@@ -4664,7 +4663,15 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work.magic_mind_images .left .end-content {
-    margin-bottom: 400px;
+    margin-bottom: 328px;
+  }
+
+  section.work .left .project-heading {
+    display: none;
+  }
+
+  section.work.magic_mind_images .left .project-heading {
+    display: block;
   }
 
   section.work .left .project-heading {
@@ -4686,15 +4693,11 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 200;
     line-height: 100%;
     letter-spacing: -0.32px;
-    margin-top: 68px;
+    margin-top: 16px;
     margin-left: auto;
     max-width: 280px;
     height: 206px;
-    margin-bottom: 140px;
-  }
-
-  section.work.magic_mind_images .left .project-text {
-    margin-top: 32px;
+    margin-bottom: 228px;
   }
 
   section.work .work-headline {
@@ -5192,10 +5195,6 @@ section.about .row .about-images img:nth-child(10) {
     margin-bottom: 120px;
   }
 
-  .footer .contact-information h2 > #copyBtn {
-    display: none;
-  }
-
   .footer .contact-information h3 {
     font-family: FoundersGroteskCondensedMedium;
     font-weight: 500;
@@ -5215,6 +5214,11 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 300;
     line-height: 100%; /* 48px */
     letter-spacing: -1.44px;
+    max-width: 100%;
+  }
+
+  .footer .contact-information h2 > #copyBtn {
+    right: 0;
   }
 
   .footer .contact-information h2 > img {
