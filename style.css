@@ -390,7 +390,7 @@ span.icon-font {
 
 .hero .right-content .hero-cta {
   position: absolute;
-  top: -80px;
+  top: -70px;
   left: -30px;
   width: 71px;
   height: 84px;
@@ -428,6 +428,10 @@ span.icon-font {
   max-width: 936px;
   height: 100%;
   object-fit: cover;
+}
+
+.hero .right-content .hero-cta {
+  object-fit: unset;
 }
 
 .carousel-wrapper {
@@ -2028,7 +2032,7 @@ section.about .row .about-images img:nth-child(10) {
 
   .hero .right-content .hero-cta {
     position: absolute;
-    top: -4.167vw;
+    top: -3.646vw;
     left: -1.563vw;
     width: 3.698vw;
     height: 4.375vw;

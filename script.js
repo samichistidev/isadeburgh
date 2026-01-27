@@ -663,9 +663,9 @@ function initButtonAnimation() {
 
     infiniteTween = gsap.fromTo(
       groups,
-      { x: 0 },
+      { x: -width },
       {
-        x: -width,
+        x: 0,
         duration: 3,
         ease: "linear",
         repeat: -1,
@@ -707,7 +707,7 @@ function initButtonAnimation() {
 }
 
 // Initialize after DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initButtonAnimation);
+window.addEventListener("load", initButtonAnimation);
 
 function initCopySystem(modal, target, btn) {
   btn.addEventListener("click", () => {
@@ -1512,7 +1512,6 @@ function animate(time) {
   text.textContent = progress;
 
   const maxX = window.innerWidth - text.offsetWidth;
-  const maxY = window.innerHeight - text.offsetHeight;
 
   const x = maxX * t;
 
