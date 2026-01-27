@@ -4663,7 +4663,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work.magic_mind_images .left .end-content {
-    margin-bottom: 328px;
+    margin-bottom: 446px;
   }
 
   section.work .left .project-heading {
@@ -4998,7 +4998,7 @@ section.about .row .about-images img:nth-child(10) {
     left: 648px;
     display: block;
     padding: 3px;
-    border: 0.5px solid black;
+    border: 1 solid black;
   }
 
   section.about .row .about-images .little-saints img {
@@ -5128,7 +5128,7 @@ section.about .row .about-images img:nth-child(10) {
     width: 90px; /* 260px */
     height: 167px; /* 483px */
     position: absolute;
-    right: 20px; /* 120px */
+    right: 35px; /* 120px */
     padding: 6px; /* 16px */
     top: 20px; /* 40px */
     rotate: 30deg;
@@ -5185,6 +5185,10 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 150px; /* 428px */
     width: 100%;
     height: 184px; /* 533px */
+  }
+
+  section.work.magic_mind_images .left .project-text {
+    margin-bottom: 120px;
   }
 
   .footer {

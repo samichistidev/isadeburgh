@@ -210,14 +210,33 @@ function createTransformAnimations() {
     ease: "power4.out",
   });
 
+  // gsap.to(".list-of-year", {
+  //   xPercent: -100,
+  //   scrollTrigger: {
+  //     trigger: ".list-of-year-wrapper",
+  //     scroller: "body",
+  //     start: "bottom bottom",
+  //     pin: true,
+  //     scrub: 1,
+  //   },
+  // });
+
+  gsap.set(".list-of-year", {
+    willChange: "transform",
+    force3D: true,
+  });
+
   gsap.to(".list-of-year", {
-    xPercent: -100,
+    x: () => -document.querySelector(".list-of-year").offsetWidth,
+    ease: "none",
     scrollTrigger: {
       trigger: ".list-of-year-wrapper",
-      scroller: "body",
       start: "bottom bottom",
+      end: () => "+=" + document.querySelector(".list-of-year").offsetWidth,
       pin: true,
-      scrub: 1,
+      scrub: 0.3,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
     },
   });
 }
@@ -1111,22 +1130,6 @@ function workSectionBottleAnimation() {
       if (i === 0) p.classList.add("end-last");
       disciplines.appendChild(p);
     });
-
-    // const product = document.querySelector(
-    //   "",
-    // );
-    // const img = document.querySelector(
-    //   "section.work .products .product.second img",
-    // );
-
-    // product.addEventListener("mouseenter", () => {
-    //   img.style.filter = "blur(0)";
-    // });
-
-    // product.addEventListener("mouseleave", () => {
-    //   img.style.filter = "";
-    // });
-
     if (content.project_text === null) {
       document.querySelector(".project-heading").style.pointerEvents = "none";
       document.querySelector(".project-heading").style.opacity = "0";
