@@ -4664,7 +4664,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work.magic_mind_images .left .end-content {
-    margin-bottom: 390px;
+    margin-bottom: 400px;
   }
 
   section.work .left .project-heading {
@@ -4686,11 +4686,15 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 200;
     line-height: 100%;
     letter-spacing: -0.32px;
-    margin-top: 90px;
+    margin-top: 68px;
     margin-left: auto;
     max-width: 280px;
     height: 206px;
-    margin-bottom: 120px;
+    margin-bottom: 140px;
+  }
+
+  section.work.magic_mind_images .left .project-text {
+    margin-top: 32px;
   }
 
   section.work .work-headline {
@@ -4952,7 +4956,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .right.mobile:has(.sidedish-recipe) {
-    margin-bottom: 800px;
+    margin-bottom: 743px;
   }
 
   section.about .photos {
