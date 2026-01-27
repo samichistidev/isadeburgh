@@ -951,6 +951,10 @@ section.work .right .cartoonish-sea-picture {
   z-index: 0;
 }
 
+/* section.work .products .product.second p:hover ~ img {
+  filter: blur(0) !important;
+} */
+
 section.work .right .magic-mind-bottle-picture {
   width: 460px;
   height: 524px;
@@ -974,7 +978,7 @@ section.work .right .multiple-bottle {
 section.work .products {
   position: absolute;
   width: 74.427vw;
-  height: 1785px;
+  height: 92.4vw;
   bottom: 16px;
   right: 16px;
 }
@@ -3209,7 +3213,7 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products {
     width: 74.427vw;
-    height: 94.813vw;
+    height: 98vw;
   }
 
   section.work .work-left-content p {
@@ -3486,6 +3490,10 @@ section.about .row .about-images img:nth-child(10) {
     width: 100%;
     max-width: 22.2917vw; /* 428px */
     height: 27.7604vw; /* 533px */
+  }
+
+  section.work .products {
+    height: 97.813vw;
   }
 
   section.work .products .product.third {

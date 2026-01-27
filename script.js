@@ -6,21 +6,6 @@ let menuBtn = document.querySelector(".menu-btn");
 let menu = document.querySelector(".menu");
 let logoTween = null;
 
-const product = document.querySelector(
-  "section.work .products .product.second p",
-);
-const img = document.querySelector(
-  "section.work .products .product.second img",
-);
-
-product.addEventListener("mouseenter", () => {
-  img.style.filter = "blur(0)";
-});
-
-product.addEventListener("mouseleave", () => {
-  img.style.filter = "";
-});
-
 function createTransformAnimations() {
   const logoEl = document.querySelector(".navigation .logo");
   if (!logoEl) return;
@@ -724,8 +709,6 @@ function initButtonAnimation() {
 // Initialize after DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initButtonAnimation);
 
-document.addEventListener("DOMContentLoaded", initButtonAnimation);
-
 function initCopySystem(modal, target, btn) {
   btn.addEventListener("click", () => {
     navigator.clipboard.writeText(target.textContent);
@@ -1049,6 +1032,42 @@ window.addEventListener("resize", () => {
   is2k = window.innerWidth > 1920;
 });
 
+function bindProductHover() {
+  const products = document.querySelectorAll(
+    "section.work .products .product.second",
+  );
+
+  products.forEach((product) => {
+    const p = product.querySelector("p");
+    const img = product.querySelector("img");
+
+    if (!p || !img) return;
+
+    // prevent duplicate listeners
+    if (p.dataset.bound) return;
+    p.dataset.bound = "true";
+
+    p.addEventListener("mouseenter", () => {
+      img.style.filter = "blur(0)";
+    });
+
+    p.addEventListener("mouseleave", () => {
+      img.style.filter = "blur(12px)";
+    });
+  });
+}
+
+bindProductHover();
+
+const observer2 = new MutationObserver(() => {
+  bindProductHover();
+});
+
+observer2.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
 function workSectionBottleAnimation() {
   const nextProjectBtns = document.querySelectorAll(".next-project");
 
@@ -1092,6 +1111,21 @@ function workSectionBottleAnimation() {
       if (i === 0) p.classList.add("end-last");
       disciplines.appendChild(p);
     });
+
+    // const product = document.querySelector(
+    //   "",
+    // );
+    // const img = document.querySelector(
+    //   "section.work .products .product.second img",
+    // );
+
+    // product.addEventListener("mouseenter", () => {
+    //   img.style.filter = "blur(0)";
+    // });
+
+    // product.addEventListener("mouseleave", () => {
+    //   img.style.filter = "";
+    // });
 
     if (content.project_text === null) {
       document.querySelector(".project-heading").style.pointerEvents = "none";
@@ -1494,15 +1528,17 @@ function animate(time) {
   }
 }
 
-requestAnimationFrame(animate);
+window.addEventListener("load", () => {
+  requestAnimationFrame(animate);
 
-setTimeout(() => {
-  gsap.to("#loader", {
-    transform: "translateY(-100%)",
-    duration: 1.2,
-    opcaity: 0,
-    pointerEvents: "none",
-    zIndex: -1,
-    ease: "power4.inOut",
-  });
-}, 2500);
+  setTimeout(() => {
+    gsap.to("#loader", {
+      transform: "translateY(-100%)",
+      duration: 1.2,
+      opcaity: 0,
+      pointerEvents: "none",
+      zIndex: -1,
+      ease: "power4.inOut",
+    });
+  }, 2500);
+});
