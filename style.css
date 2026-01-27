@@ -4664,7 +4664,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work.magic_mind_images .left .end-content {
-    margin-bottom: 368px;
+    margin-bottom: 390px;
   }
 
   section.work .left .project-heading {
@@ -4780,7 +4780,7 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products .product.first img {
     height: 320px;
-    width: fit-content;
+    width: 122px;
     max-width: fit-content;
     left: 0;
   }
@@ -4836,6 +4836,11 @@ section.about .row .about-images img:nth-child(10) {
     letter-spacing: -1.28px;
     text-align: right;
     text-transform: uppercase;
+  }
+
+  section.work .products .product.third img {
+    width: 53px;
+    height: 172px;
   }
 
   section.work .right .sidedish-mobile {
