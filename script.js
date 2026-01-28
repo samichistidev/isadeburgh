@@ -1697,6 +1697,12 @@ window.addEventListener("load", () => {
         pointerEvents: "none",
         zIndex: -1,
         ease: "power4.inOut",
+        onComplete: () => {
+          document.querySelector("#loader").style.pointerEvents = "none";
+          document.querySelector("#loader").style.display = "none";
+          document.querySelector("#loader").style.zIndex = "-1";
+          document.querySelector("#loader").style.opacity = "0";
+        },
       });
     }, remaining);
   }, 2000); // assets finish anytime (cached or not)
