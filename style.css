@@ -470,6 +470,10 @@ span.icon-font {
   flex-shrink: 0;
 }
 
+.carousel-wrapper .text-carousel {
+  will-change: transform;
+}
+
 .carousel-wrapper .text-carousel * {
   display: inline-block;
 }
