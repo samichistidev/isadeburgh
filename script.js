@@ -210,36 +210,168 @@ function createTransformAnimations() {
     ease: "power4.out",
   });
 
-  // gsap.to(".list-of-year", {
-  //   xPercent: -100,
-  //   scrollTrigger: {
-  //     trigger: ".list-of-year-wrapper",
-  //     scroller: "body",
-  //     start: "bottom bottom",
-  //     pin: true,
-  //     scrub: 1,
-  //   },
-  // });
+  ScrollTrigger.matchMedia({
+    // DESKTOP (keep your pin logic here if you want)
+    "(min-width: 768px)": () => {
+      gsap.set(".list-of-year", {
+        willChange: "transform",
+        force3D: true,
+      });
 
-  gsap.set(".list-of-year", {
-    willChange: "transform",
-    force3D: true,
-  });
-
-  gsap.to(".list-of-year", {
-    x: () => -document.querySelector(".list-of-year").offsetWidth,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".list-of-year-wrapper",
-      start: "bottom bottom",
-      end: () => "+=" + document.querySelector(".list-of-year").offsetWidth,
-      pin: true,
-      scrub: 0.3,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
+      gsap.to(".list-of-year", {
+        x: () => -document.querySelector(".list-of-year").offsetWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".list-of-year-wrapper",
+          start: "bottom bottom",
+          end: () => "+=" + document.querySelector(".list-of-year").offsetWidth,
+          pin: true,
+          scrub: 0.3,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
     },
+
+    // MOBILE
+    // "(max-width: 767px)": () => {
+    //   const wrapper = document.querySelector(".list-of-year-wrapper");
+    //   const list = document.querySelector(".list-of-year");
+
+    //   // duplicate content for marquee
+    //   list.innerHTML += list.innerHTML;
+    //   const totalWidth = list.scrollWidth / 2;
+
+    //   gsap.set(list, {
+    //     x: 0,
+    //     willChange: "transform",
+    //     force3D: true,
+    //   });
+
+    //   // marquee tween
+    //   const marqueeTween = gsap.to(list, {
+    //     x: -totalWidth,
+    //     duration: 30,
+    //     ease: "none",
+    //     repeat: -1,
+    //     paused: true,
+    //     modifiers: {
+    //       x: (x) => `${parseFloat(x) % totalWidth}px`,
+    //     },
+    //   });
+
+    //   // draggable
+    //   Draggable.create(list, {
+    //     type: "x",
+    //     inertia: true,
+    //     edgeResistance: 0.85,
+    //     bounds: {
+    //       minX: -totalWidth,
+    //       maxX: 0,
+    //     },
+    //     cursor: "grab",
+    //     activeCursor: "grabbing",
+    //     onPress() {
+    //       marqueeTween.pause();
+    //     },
+    //     onRelease() {
+    //       marqueeTween.play();
+    //     },
+    //   });
+
+    //   // viewport control
+    //   ScrollTrigger.create({
+    //     trigger: wrapper,
+    //     start: "top bottom",
+    //     end: "bottom top",
+    //     onEnter: () => marqueeTween.play(),
+    //     onEnterBack: () => marqueeTween.play(),
+    //     onLeave: () => marqueeTween.pause(),
+    //     onLeaveBack: () => marqueeTween.pause(),
+    //   });
+    // },
   });
 }
+
+// Make sure gsap and Observer are loaded
+gsap.registerPlugin(Observer);
+
+(function () {
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  if (!isMobile) return;
+
+  const wrapper = document.querySelector(".list-of-year-wrapper");
+  const track = document.querySelector(".list-of-year");
+  if (!wrapper || !track) return;
+
+  const speed = 80; // px per second for auto-scroll
+  let autoPlaying = true;
+  let lastTime = gsap.ticker.time;
+
+  // Duplicate items for seamless loop
+  const items = Array.from(track.children);
+  items.forEach((el) => track.appendChild(el.cloneNode(true)));
+
+  // Measure original loop width
+  let loopWidth = 0;
+  function measure() {
+    loopWidth = items.reduce((sum, el) => sum + el.offsetWidth, 0);
+  }
+  measure();
+  window.addEventListener("resize", measure);
+
+  const wrapX = gsap.utils.wrap(-loopWidth, 0);
+
+  // Auto-scroll tick
+  gsap.ticker.add(() => {
+    if (!autoPlaying) return;
+    const now = gsap.ticker.time;
+    const dt = now - lastTime;
+    lastTime = now;
+
+    const x = gsap.getProperty(track, "x") || 0;
+    gsap.set(track, { x: wrapX(x - speed * dt) });
+  });
+
+  function pauseAuto() {
+    autoPlaying = false;
+  }
+  function resumeAuto() {
+    lastTime = gsap.ticker.time;
+    autoPlaying = true;
+  }
+
+  let velocityX = 0;
+  let inertiaTween;
+
+  Observer.create({
+    target: wrapper,
+    type: "touch,pointer",
+    onPress() {
+      pauseAuto();
+      if (inertiaTween) inertiaTween.kill();
+      velocityX = 0;
+    },
+    onDrag(self) {
+      const x = (gsap.getProperty(track, "x") || 0) + self.deltaX;
+      gsap.set(track, { x: wrapX(x) });
+      velocityX = self.velocityX;
+    },
+    onRelease() {
+      const currentX = gsap.getProperty(track, "x") || 0;
+      const glide = gsap.utils.clamp(-600, 600, velocityX * 0.6);
+
+      inertiaTween = gsap.to(track, {
+        x: wrapX(currentX + glide),
+        duration: 0.6,
+        ease: "power3.out",
+        onUpdate: () =>
+          gsap.set(track, { x: wrapX(gsap.getProperty(track, "x")) }),
+        onComplete: resumeAuto,
+      });
+    },
+  });
+})();
 
 function initCarouselScrollAnimation() {
   let lastScrollPos = window.pageYOffset;
@@ -1541,7 +1673,7 @@ function animate() {
 window.addEventListener("load", () => {
   setTimeout(() => {
     text.style.left = "-16px";
-  }, 200);
+  }, 400);
 
   // Start fake-real progress
   randomProgressLoop();
