@@ -2603,8 +2603,8 @@ section.about .row .about-images img:nth-child(10) {
   section.about .row:has(.about-images) .work-text-3 {
     position: absolute;
     top: 31.25vw;
-    left: 59.896vw;
-    width: 9.01vw;
+    left: 61.896vw;
+    width: 7.01vw;
     height: 3.698vw;
   }
 
